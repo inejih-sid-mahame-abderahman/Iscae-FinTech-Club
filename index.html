@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IFC — LISCAE Fintech Club</title>
+    <meta name="description" content="Le Fintech Club de LISCAE — Une communauté étudiante dédiée à la fintech, à l'innovation et à la technologie financière." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ───── RESET & BASE ───── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text-primary: #0b0f19;
+            --text-secondary: #5f636e;
+            --blue: #2563eb;
+            --blue-hover: #1d4ed8;
+            --yellow: #f5c542;
+            --yellow-soft: rgba(245, 197, 66, 0.15);
+            --cyan-soft: rgba(234, 248, 250, 0.4);
+            --lavender-soft: rgba(243, 240, 255, 0.4);
+            --border-subtle: rgba(15, 23, 42, 0.06);
+            --shadow-btn: 0 4px 20px rgba(37, 99, 235, 0.25);
+            --shadow-btn-hover: 0 8px 32px rgba(37, 99, 235, 0.35);
+            --radius-pill: 9999px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ───── BACKGROUND ATMOSPHERE ───── */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-atmosphere .glow-cyan {
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .bg-atmosphere .glow-lavender {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(ellipse, rgba(243, 240, 255, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .bg-atmosphere .glow-yellow {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(ellipse, rgba(245, 197, 66, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        /* ───── TECHNICAL BACKGROUND GRAPHICS ───── */
+        .bg-tech {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.6;
+        }
+
+        /* Nodes */
+        .bg-tech .node {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--blue);
+            opacity: 0.06;
+        }
+
+        .bg-tech .node-1 {
+            width: 6px;
+            height: 6px;
+            top: 12%;
+            left: 8%;
+        }
+        .bg-tech .node-2 {
+            width: 4px;
+            height: 4px;
+            top: 25%;
+            right: 15%;
+        }
+        .bg-tech .node-3 {
+            width: 8px;
+            height: 8px;
+            bottom: 30%;
+            left: 5%;
+        }
+        .bg-tech .node-4 {
+            width: 5px;
+            height: 5px;
+            bottom: 20%;
+            right: 10%;
+        }
+        .bg-tech .node-5 {
+            width: 3px;
+            height: 3px;
+            top: 55%;
+            left: 20%;
+            opacity: 0.04;
+        }
+        .bg-tech .node-6 {
+            width: 7px;
+            height: 7px;
+            top: 40%;
+            right: 25%;
+            opacity: 0.04;
+        }
+        .bg-tech .node-yellow {
+            width: 5px;
+            height: 5px;
+            top: 18%;
+            left: 50%;
+            background: var(--yellow);
+            opacity: 0.12;
+        }
+        .bg-tech .node-yellow-2 {
+            width: 4px;
+            height: 4px;
+            bottom: 40%;
+            right: 35%;
+            background: var(--yellow);
+            opacity: 0.08;
+        }
+
+        /* Connection lines */
+        .bg-tech .line {
+            position: absolute;
+            background: var(--blue);
+            opacity: 0.04;
+            height: 1px;
+            border-radius: 1px;
+        }
+        .bg-tech .line-1 {
+            width: 120px;
+            top: 18%;
+            left: 12%;
+            transform: rotate(20deg);
+        }
+        .bg-tech .line-2 {
+            width: 80px;
+            top: 35%;
+            right: 18%;
+            transform: rotate(-35deg);
+        }
+        .bg-tech .line-3 {
+            width: 100px;
+            bottom: 35%;
+            left: 8%;
+            transform: rotate(45deg);
+        }
+        .bg-tech .line-4 {
+            width: 60px;
+            bottom: 25%;
+            right: 15%;
+            transform: rotate(-20deg);
+        }
+        .bg-tech .line-yellow {
+            width: 90px;
+            top: 22%;
+            left: 45%;
+            background: var(--yellow);
+            opacity: 0.06;
+            transform: rotate(15deg);
+        }
+
+        /* Tiny symbols */
+        .bg-tech .symbol {
+            position: absolute;
+            font-family: var(--font);
+            font-weight: 400;
+            color: var(--text-secondary);
+            opacity: 0.04;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            user-select: none;
+        }
+        .bg-tech .symbol-1 {
+            top: 15%;
+            right: 8%;
+            font-size: 13px;
+            opacity: 0.035;
+        }
+        .bg-tech .symbol-2 {
+            bottom: 28%;
+            left: 12%;
+            font-size: 10px;
+            opacity: 0.03;
+        }
+        .bg-tech .symbol-3 {
+            top: 45%;
+            right: 12%;
+            font-size: 12px;
+            opacity: 0.025;
+        }
+        .bg-tech .symbol-4 {
+            bottom: 45%;
+            right: 5%;
+            font-size: 9px;
+            opacity: 0.035;
+        }
+        .bg-tech .symbol-5 {
+            top: 70%;
+            left: 6%;
+            font-size: 11px;
+            opacity: 0.03;
+        }
+        .bg-tech .symbol-6 {
+            top: 8%;
+            left: 30%;
+            font-size: 10px;
+            opacity: 0.025;
+        }
+
+        /* Small grid pattern */
+        .bg-tech .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        /* ───── HEADER ───── */
+        .header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 36px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-mark:hover {
+            transform: scale(1.04);
+        }
+
+        .logo-mark .ifc-text {
+            font-family: var(--font);
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.5px;
+            color: white;
+            line-height: 1;
+        }
+
+        .logo-mark .accent-dot {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--yellow);
+            border-radius: 50%;
+            border: 2px solid var(--text-primary);
+        }
+
+        /* Logo image slot — replaceable */
+        .logo-image {
+            display: none;
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text .club-name {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            color: var(--text-primary);
+        }
+
+        .logo-text .club-sub {
+            font-weight: 400;
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all var(--transition);
+            padding: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(37, 99, 235, 0.04);
+        }
+
+        .theme-toggle:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        /* Language selector */
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 6px 14px 6px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-subtle);
+            background: var(--surface);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            user-select: none;
+        }
+
+        .lang-selector:hover {
+            border-color: var(--blue);
+            color: var(--text-primary);
+        }
+
+        .lang-selector .flag {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .lang-selector .lang-label {
+            margin-left: 2px;
+        }
+
+        .lang-selector .arrow-down {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-left: 2px;
+        }
+
+        /* Language dropdown */
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            min-width: 140px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            padding: 4px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all var(--transition);
+            z-index: 20;
+        }
+
+        .lang-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+        }
+
+        .lang-dropdown button:hover {
+            background: rgba(37, 99, 235, 0.05);
+            color: var(--text-primary);
+        }
+
+        .lang-dropdown button .flag {
+            font-size: 16px;
+        }
+
+        .lang-dropdown button.active {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* ───── HERO ───── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 32px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: calc(100vh - 120px);
+        }
+
+        .hero-content {
+            max-width: 820px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Eyebrow */
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--blue);
+            background: rgba(37, 99, 235, 0.06);
+            padding: 6px 18px 6px 16px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 28px;
+            border: 1px solid rgba(37, 99, 235, 0.06);
+        }
+
+        .hero-eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--yellow);
+            display: inline-block;
+        }
+
+        /* Headline */
+        .hero-headline {
+            font-family: var(--font);
+            font-weight: 800;
+            font-size: clamp(2.8rem, 10vw, 7rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .hero-headline .highlight-yellow {
+            color: var(--yellow);
+            position: relative;
+        }
+
+        .hero-headline .highlight-yellow::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--yellow);
+            opacity: 0.25;
+            border-radius: 4px;
+        }
+
+        .hero-headline .line-2 {
+            display: block;
+            font-weight: 900;
+        }
+
+        .hero-headline .line-2 .accent-blue {
+            color: var(--blue);
+        }
+
+        /* Description */
+        .hero-desc {
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 18px auto 40px;
+            letter-spacing: -0.01em;
+        }
+
+        /* CTAs */
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 44px;
+            background: var(--blue);
+            color: white;
+            font-family: var(--font);
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            box-shadow: var(--shadow-btn);
+            width: 100%;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-btn-hover);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0px);
+        }
+
+        .btn-primary:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .btn-primary .arrow {
+            transition: transform var(--transition);
+            display: inline-block;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+            padding: 6px 4px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            color: var(--blue);
+        }
+
+        .btn-secondary .arrow {
+            transition: transform var(--transition);
+            display: inline-block;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .btn-secondary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-archive {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+            padding: 4px 4px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .btn-archive:hover {
+            opacity: 1;
+            color: var(--text-primary);
+        }
+
+        .btn-archive .arrow {
+            transition: transform var(--transition);
+            display: inline-block;
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .btn-archive:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ───── FOOTER ───── */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px 32px 28px;
+            margin-top: auto;
+        }
+
+        .footer-copy {
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        /* ───── RESPONSIVE ───── */
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            .header {
+                padding: 20px 24px 16px;
+            }
+
+            .hero-headline {
+                font-size: clamp(2.4rem, 7vw, 4.5rem);
+            }
+
+            .hero-desc {
+                font-size: 1.05rem;
+                padding: 0 8px;
+            }
+
+            .btn-primary {
+                font-size: 17px;
+                padding: 15px 36px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .header {
+                padding: 16px 16px 12px;
+            }
+
+            .logo-mark {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-mark .ifc-text {
+                font-size: 15px;
+            }
+
+            .logo-mark .accent-dot {
+                width: 8px;
+                height: 8px;
+                bottom: 3px;
+                right: 3px;
+            }
+
+            .logo-text .club-name {
+                font-size: 12px;
+            }
+
+            .logo-text .club-sub {
+                font-size: 9px;
+            }
+
+            .theme-toggle {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+
+            .lang-selector {
+                font-size: 12px;
+                padding: 5px 10px 5px 8px;
+            }
+
+            .lang-selector .flag {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 16px 16px 32px;
+                min-height: calc(100vh - 100px);
+            }
+
+            .hero-eyebrow {
+                font-size: 10px;
+                padding: 4px 14px 4px 12px;
+                margin-bottom: 20px;
+            }
+
+            .hero-headline {
+                font-size: clamp(2rem, 11vw, 2.8rem);
+                letter-spacing: -0.02em;
+            }
+
+            .hero-headline .highlight-yellow::after {
+                height: 3px;
+                bottom: 0px;
+            }
+
+            .hero-desc {
+                font-size: 0.95rem;
+                margin: 14px auto 32px;
+                padding: 0 4px;
+                line-height: 1.6;
+            }
+
+            .hero-ctas {
+                max-width: 100%;
+                padding: 0 4px;
+            }
+
+            .btn-primary {
+                font-size: 16px;
+                padding: 14px 28px;
+                border-radius: var(--radius-pill);
+                gap: 8px;
+            }
+
+            .btn-primary .arrow {
+                font-size: 18px;
+            }
+
+            .btn-secondary {
+                font-size: 14px;
+            }
+
+            .btn-archive {
+                font-size: 13px;
+            }
+
+            .footer {
+                padding: 12px 16px 20px;
+            }
+
+            .footer-copy {
+                font-size: 11px;
+            }
+
+            /* Hide some background elements on mobile */
+            .bg-tech .symbol-1,
+            .bg-tech .symbol-3,
+            .bg-tech .symbol-6 {
+                display: none;
+            }
+
+            .bg-tech .line-1,
+            .bg-tech .line-2,
+            .bg-tech .line-yellow {
+                display: none;
+            }
+
+            .bg-tech .node-2,
+            .bg-tech .node-5,
+            .bg-tech .node-yellow-2 {
+                display: none;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 400px) {
+            .header {
+                padding: 12px 12px 10px;
+            }
+
+            .logo-mark {
+                width: 34px;
+                height: 34px;
+            }
+
+            .logo-mark .ifc-text {
+                font-size: 13px;
+            }
+
+            .logo-text .club-name {
+                font-size: 11px;
+            }
+
+            .logo-text .club-sub {
+                font-size: 8px;
+            }
+
+            .hero-headline {
+                font-size: clamp(1.6rem, 12vw, 2.2rem);
+            }
+
+            .hero-desc {
+                font-size: 0.85rem;
+                margin: 10px auto 26px;
+            }
+
+            .btn-primary {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+
+            .btn-secondary {
+                font-size: 13px;
+            }
+
+            .btn-archive {
+                font-size: 12px;
+            }
+        }
+
+        /* ───── REDUCED MOTION ───── */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .btn-primary:hover {
+                transform: none !important;
+            }
+
+            .btn-primary .arrow {
+                transition: none !important;
+            }
+
+            .btn-primary:hover .arrow {
+                transform: none !important;
+            }
+
+            .btn-secondary .arrow {
+                transition: none !important;
+            }
+
+            .btn-secondary:hover .arrow {
+                transform: none !important;
+            }
+
+            .btn-archive .arrow {
+                transition: none !important;
+            }
+
+            .btn-archive:hover .arrow {
+                transform: none !important;
+            }
+        }
+
+        /* ───── FOCUS VISIBLE ───── */
+        :focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* ───── SELECTION ───── */
+        ::selection {
+            background: var(--yellow);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ BACKGROUND ATMOSPHERE ═══════ -->
+    <div class="bg-atmosphere" aria-hidden="true">
+        <div class="glow-cyan"></div>
+        <div class="glow-lavender"></div>
+        <div class="glow-yellow"></div>
+    </div>
+
+    <!-- ═══════ TECHNICAL BACKGROUND ═══════ -->
+    <div class="bg-tech" aria-hidden="true">
+        <div class="grid-pattern"></div>
+
+        <!-- Nodes -->
+        <span class="node node-1"></span>
+        <span class="node node-2"></span>
+        <span class="node node-3"></span>
+        <span class="node node-4"></span>
+        <span class="node node-5"></span>
+        <span class="node node-6"></span>
+        <span class="node node-yellow"></span>
+        <span class="node node-yellow-2"></span>
+
+        <!-- Lines -->
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+        <span class="line line-4"></span>
+        <span class="line line-yellow"></span>
+
+        <!-- Symbols -->
+        <span class="symbol symbol-1">IFC</span>
+        <span class="symbol symbol-2">{ }</span>
+        <span class="symbol symbol-3">→ 01</span>
+        <span class="symbol symbol-4">&lt;/&gt;</span>
+        <span class="symbol symbol-5">Fintech</span>
+        <span class="symbol symbol-6">● ● ●</span>
+    </div>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header class="header" role="banner">
+        <div class="header-left">
+            <a href="#" class="logo-link" aria-label="IFC — LISCAE Fintech Club">
+
+                <!-- TEMPORARY LOGO MARK — replace with <img> when ready -->
+                <div class="logo-mark" id="logoMark">
+                    <span class="ifc-text">IFC</span>
+                    <span class="accent-dot"></span>
+                </div>
+
+                <!-- LOGO IMAGE SLOT — uncomment and use when real logo is ready -->
+                <!--
+                <img src="assets/ifc-logo.png" alt="IFC — LISCAE Fintech Club" class="logo-image" id="logoImage" />
+                -->
+
+                <div class="logo-text">
+                    <span class="club-name">LISCAE</span>
+                    <span class="club-sub">Fintech Club</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="header-right">
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème" title="Basculer le thème">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+
+            <!-- Language Selector -->
+            <div class="lang-selector" id="langSelector" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Choisir la langue">
+                <span class="flag" id="currentFlag">🇫🇷</span>
+                <span class="lang-label" id="currentLangLabel">Français</span>
+                <span class="arrow-down">▾</span>
+
+                <div class="lang-dropdown" id="langDropdown" role="menu">
+                    <button role="menuitem" data-lang="fr" data-flag="🇫🇷" class="active">
+                        <span class="flag">🇫🇷</span> Français
+                    </button>
+                    <button role="menuitem" data-lang="ar" data-flag="🇸🇦">
+                        <span class="flag">🇸🇦</span> العربية
+                    </button>
+                    <button role="menuitem" data-lang="en" data-flag="🇬🇧">
+                        <span class="flag">🇬🇧</span> English
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ HERO ═══════ -->
+    <main class="hero" role="main">
+        <div class="hero-content">
+
+            <!-- Eyebrow -->
+            <div class="hero-eyebrow">
+                <span class="dot"></span>
+                <span data-key="eyebrow">LISCAE Fintech Club</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="hero-headline">
+                <span class="line-1">
+                    Le <span class="highlight-yellow">Fintech</span> Club
+                </span>
+                <span class="line-2">
+                    <span class="accent-blue">de</span> LISCAE
+                </span>
+            </h1>
+
+            <!-- Description -->
+            <p class="hero-desc" data-key="description">
+                Par des étudiants, pour des étudiants. Rejoins l'IFC pour explorer la fintech,
+                apprendre, collaborer et construire les solutions financières de demain.
+            </p>
+
+            <!-- CTAs -->
+            <div class="hero-ctas">
+                <a href="#" class="btn-primary" data-key="cta_primary">
+                    Rejoindre l'IFC
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#" class="btn-secondary" data-key="cta_secondary">
+                    Accéder au formulaire d'inscription
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#archive" class="btn-archive" data-key="cta_archive">
+                    Voir les archives
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="footer" role="contentinfo">
+        <p class="footer-copy">
+            &copy; 2026 IFC &mdash; LISCAE Fintech Club
+        </p>
+    </footer>
+
+    <!-- ═══════ SCRIPTS ═══════ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── THEME TOGGLE ───
+            const themeToggle = document.getElementById('themeToggle');
+            const iconSun = themeToggle.querySelector('.icon-sun');
+            const iconMoon = themeToggle.querySelector('.icon-moon');
+            let isDark = false;
+
+            themeToggle.addEventListener('click', function() {
+                isDark = !isDark;
+                if (isDark) {
+                    document.documentElement.style.setProperty('--bg', '#0b0f19');
+                    document.documentElement.style.setProperty('--surface', '#141a26');
+                    document.documentElement.style.setProperty('--text-primary', '#f0f0f0');
+                    document.documentElement.style.setProperty('--text-secondary', '#a0a5b0');
+                    document.documentElement.style.setProperty('--border-subtle', 'rgba(255,255,255,0.06)');
+                    document.documentElement.style.setProperty('--shadow-btn', '0 4px 20px rgba(37, 99, 235, 0.35)');
+                    document.documentElement.style.setProperty('--shadow-btn-hover', '0 8px 32px rgba(37, 99, 235, 0.5)');
+                    iconSun.style.display = 'block';
+                    iconMoon.style.display = 'none';
+                } else {
+                    document.documentElement.style.setProperty('--bg', '#fafafa');
+                    document.documentElement.style.setProperty('--surface', '#ffffff');
+                    document.documentElement.style.setProperty('--text-primary', '#0b0f19');
+                    document.documentElement.style.setProperty('--text-secondary', '#5f636e');
+                    document.documentElement.style.setProperty('--border-subtle', 'rgba(15, 23, 42, 0.06)');
+                    document.documentElement.style.setProperty('--shadow-btn', '0 4px 20px rgba(37, 99, 235, 0.25)');
+                    document.documentElement.style.setProperty('--shadow-btn-hover', '0 8px 32px rgba(37, 99, 235, 0.35)');
+                    iconSun.style.display = 'none';
+                    iconMoon.style.display = 'block';
+                }
+            });
+
+            // ─── LANGUAGE SELECTOR ───
+            const langSelector = document.getElementById('langSelector');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentFlag = document.getElementById('currentFlag');
+            const currentLangLabel = document.getElementById('currentLangLabel');
+
+            let isLangOpen = false;
+
+            function toggleLangDropdown(e) {
+                e.stopPropagation();
+                isLangOpen = !isLangOpen;
+                langDropdown.classList.toggle('open', isLangOpen);
+                langSelector.setAttribute('aria-expanded', isLangOpen);
+            }
+
+            langSelector.addEventListener('click', toggleLangDropdown);
+
+            langSelector.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleLangDropdown(e);
+                }
+                if (e.key === 'Escape' && isLangOpen) {
+                    isLangOpen = false;
+                    langDropdown.classList.remove('open');
+                    langSelector.setAttribute('aria-expanded', 'false');
+                    langSelector.focus();
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!langSelector.contains(e.target) && isLangOpen) {
+                    isLangOpen = false;
+                    langDropdown.classList.remove('open');
+                    langSelector.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            langDropdown.querySelectorAll('button[data-lang]').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lang = this.dataset.lang;
+                    const flag = this.dataset.flag;
+                    const label = this.textContent.trim();
+
+                    currentFlag.textContent = flag;
+                    currentLangLabel.textContent = label;
+
+                    langDropdown.querySelectorAll('button[data-lang]').forEach(function(b) {
+                        b.classList.toggle('active', b.dataset.lang === lang);
+                    });
+
+                    isLangOpen = false;
+                    langDropdown.classList.remove('open');
+                    langSelector.setAttribute('aria-expanded', 'false');
+
+                    // Here you can dispatch a custom event or call a translation function
+                    // For now, we just update the UI
+                    console.log('Language switched to:', lang);
+
+                    // You can implement translation loading here
+                });
+            });
+
+            // ─── LOGO REPLACEMENT READY ───
+            // To replace the temporary logo with a real image:
+            // 1. Place your logo at: assets/ifc-logo.png (or any path)
+            // 2. Uncomment the <img> tag in the header
+            // 3. Comment out the <div class="logo-mark"> block
+            // The logo will automatically take its place with the same dimensions
+
+            console.log('IFC — LISCAE Fintech Club');
+            console.log('Logo replacement: Place your logo at assets/ifc-logo.png and uncomment the <img> tag in the header.');
+
+            // ─── KEYBOARD NAVIGATION FOR DROPDOWN ───
+            langDropdown.querySelectorAll('button[data-lang]').forEach(function(btn) {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        isLangOpen = false;
+                        langDropdown.classList.remove('open');
+                        langSelector.setAttribute('aria-expanded', 'false');
+                        langSelector.focus();
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
