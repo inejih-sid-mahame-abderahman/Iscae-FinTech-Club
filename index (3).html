@@ -1,1022 +1,1177 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light" dir="ltr">
+<html lang="fr" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LISCAE Fintech Club — IFC</title>
-<meta name="description" content="LISCAE Fintech Club (IFC), une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.">
-<meta property="og:title" content="LISCAE Fintech Club — IFC">
-<meta property="og:description" content="LISCAE Fintech Club (IFC), une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.">
-<meta property="og:image" content="/assets/hero/og-image.jpg">
-<link rel="icon" href="/assets/logo/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   IFC — LISCAE FINTECH CLUB
-   Design tokens
-   ============================================================ */
-:root{
-  --navy:#0B1020;
-  --blue:#2563EB;
-  --blue-dim:#3B4A78;
-  --yellow:#F5C542;
-  --cyan:#EAF8FA;
-  --lavender:#F3F0FF;
-  --bg:#FAFAFC;
-  --surface:#FFFFFF;
-  --text:#0B1020;
-  --text-soft:#626875;
-  --border:rgba(15,23,42,0.08);
-  --border-strong:rgba(15,23,42,0.16);
-  --shadow: 0 1px 2px rgba(15,23,42,0.04);
-  --radius:16px;
-  --radius-sm:10px;
-  --font-display:'Space Grotesk', 'Cairo', sans-serif;
-  --font-body:'Manrope', 'Cairo', sans-serif;
-  --container:1180px;
-  --nav-h:76px;
-}
-[data-theme="dark"]{
-  --navy:#F8FAFC;
-  --blue:#3B82F6;
-  --blue-dim:#8FA8E8;
-  --yellow:#F5C542;
-  --cyan:#0D1320;
-  --lavender:#111827;
-  --bg:#070B14;
-  --surface:#0D1320;
-  --text:#F8FAFC;
-  --text-soft:#A7B0C0;
-  --border:rgba(248,250,252,0.08);
-  --border-strong:rgba(248,250,252,0.16);
-  --shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-html[dir="rtl"] body{ font-family: 'Cairo', 'Manrope', sans-serif; }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
-body{
-  font-family:var(--font-body);
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  transition:background .35s ease, color .35s ease;
-  overflow-x:hidden;
-}
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-ul{list-style:none;}
-.container{max-width:var(--container);margin:0 auto;padding:0 24px;}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);
-  font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--blue);
-}
-.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--yellow);}
-h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-0.02em;color:var(--text);}
-.section{padding:120px 0;position:relative;}
-.section-tint{background:linear-gradient(180deg,var(--cyan) 0%, var(--bg) 100%);}
-.section-head{max-width:640px;margin-bottom:56px;}
-.section-head h2{font-size:clamp(30px,4vw,44px);margin:14px 0 16px;}
-.section-head p{color:var(--text-soft);font-size:17px;}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
-.stagger .reveal:nth-child(1){transition-delay:.02s}
-.stagger .reveal:nth-child(2){transition-delay:.09s}
-.stagger .reveal:nth-child(3){transition-delay:.16s}
-.stagger .reveal:nth-child(4){transition-delay:.23s}
-.stagger .reveal:nth-child(5){transition-delay:.30s}
-.stagger .reveal:nth-child(6){transition-delay:.37s}
-
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 26px;border-radius:999px;
-  font-weight:600;font-size:15px;
-  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
-  white-space:nowrap;
-}
-.btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 20px -8px rgba(37,99,235,.55);}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(37,99,235,.65);}
-.btn-secondary{background:transparent;border:1.5px solid var(--border-strong);color:var(--text);}
-.btn-secondary:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
-.btn-ghost{color:var(--blue);font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:6px;}
-.btn-ghost .arrow{transition:transform .25s ease;}
-.btn-ghost:hover .arrow{transform:translateX(4px);}
-html[dir="rtl"] .btn-ghost:hover .arrow{transform:translateX(-4px);}
-.btn-on-dark{background:var(--yellow);color:#0B1020;box-shadow:0 8px 20px -8px rgba(245,197,66,.5);}
-.btn-on-dark:hover{transform:translateY(-2px);}
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  height:var(--nav-h);
-  display:flex;align-items:center;
-  background:rgba(250,250,252,.72);
-  backdrop-filter:blur(14px) saturate(150%);
-  -webkit-backdrop-filter:blur(14px) saturate(150%);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s ease, background .3s ease;
-}
-[data-theme="dark"] header{background:rgba(7,11,20,.72);}
-header.scrolled{border-bottom-color:var(--border);}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;}
-.brand{display:flex;align-items:center;gap:10px;}
-.brand-mark{width:38px;height:38px;flex-shrink:0;}
-.brand-name{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.01em;line-height:1.15;}
-.brand-name small{display:block;font-family:var(--font-body);font-weight:600;color:var(--text-soft);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-top:1px;}
-.nav-links{display:flex;align-items:center;gap:2px;}
-.nav-links a{
-  padding:9px 16px;border-radius:999px;font-size:14.5px;font-weight:600;color:var(--text-soft);
-  transition:color .2s ease, background .2s ease;
-}
-.nav-links a:hover{color:var(--text);background:var(--border);}
-.nav-links a.active{color:var(--blue);}
-.nav-actions{display:flex;align-items:center;gap:6px;}
-.icon-btn{
-  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  color:var(--text-soft);transition:background .2s ease,color .2s ease;
-}
-.icon-btn:hover{background:var(--border);color:var(--text);}
-.icon-btn svg{width:19px;height:19px;}
-
-/* language selector */
-.lang-wrap{position:relative;}
-.lang-btn{
-  display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;
-  font-size:13.5px;font-weight:600;color:var(--text-soft);
-  transition:background .2s ease,color .2s ease;
-}
-.lang-btn:hover{background:var(--border);color:var(--text);}
-.lang-menu{
-  position:absolute;top:calc(100% + 10px);inset-inline-end:0;
-  background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  box-shadow:0 20px 40px -20px rgba(15,23,42,.3);
-  min-width:170px;padding:6px;
-  opacity:0;visibility:hidden;transform:translateY(-6px);
-  transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
-}
-.lang-wrap.open .lang-menu{opacity:1;visibility:visible;transform:translateY(0);}
-.lang-menu button{
-  width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;
-  font-size:14px;font-weight:600;color:var(--text);
-}
-.lang-menu button:hover{background:var(--border);}
-.lang-menu button.active{color:var(--blue);}
-
-.hamburger{display:none;width:38px;height:38px;border-radius:50%;align-items:center;justify-content:center;color:var(--text);}
-.hamburger svg{width:20px;height:20px;}
-
-/* mobile drawer */
-.drawer-backdrop{position:fixed;inset:0;background:rgba(7,11,20,.5);z-index:1100;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;}
-.drawer-backdrop.open{opacity:1;visibility:visible;}
-.drawer{
-  position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(84vw,340px);z-index:1200;
-  background:var(--surface);padding:26px 22px;
-  transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);
-  display:flex;flex-direction:column;gap:26px;
-}
-html[dir="rtl"] .drawer{transform:translateX(-100%);}
-.drawer.open{transform:translateX(0);}
-.drawer-top{display:flex;justify-content:space-between;align-items:center;}
-.drawer nav{display:flex;flex-direction:column;gap:4px;}
-.drawer nav a{padding:13px 6px;font-size:17px;font-weight:600;border-bottom:1px solid var(--border);}
-.drawer .btn-primary{justify-content:center;margin-top:10px;}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{
-  position:relative;padding:calc(var(--nav-h) + 96px) 0 100px;overflow:hidden;
-  background:
-    radial-gradient(circle at 18% 18%, var(--lavender) 0%, transparent 42%),
-    radial-gradient(circle at 84% 12%, var(--cyan) 0%, transparent 40%),
-    var(--bg);
-}
-.hero-inner{position:relative;z-index:2;max-width:800px;margin:0 auto;text-align:center;}
-.hero .eyebrow{margin-bottom:22px;}
-.hero h1{font-size:clamp(42px,6.2vw,72px);line-height:1.06;margin-bottom:22px;}
-.hero h1 .accent{color:var(--blue);}
-.hero p.lead{font-size:19px;color:var(--text-soft);max-width:600px;margin:0 auto 38px;}
-.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
-.hero-tertiary{margin-top:6px;}
-.hero-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;}
-.hero-canvas svg{width:100%;height:100%;}
-
-/* ============================================================
-   ABOUT
-   ============================================================ */
-.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;}
-.about-copy p{color:var(--text-soft);font-size:16.5px;margin-top:18px;max-width:480px;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-.stat-cell{background:var(--surface);padding:32px 24px;}
-.stat-cell .num{font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--text);}
-.stat-cell .num .yl{color:var(--yellow);}
-.stat-cell .label{color:var(--text-soft);font-size:13.5px;margin-top:6px;font-weight:600;}
-
-/* ============================================================
-   VALUES
-   ============================================================ */
-.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-.value-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:30px 24px;transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-}
-.value-card:hover{transform:translateY(-6px);border-color:var(--border-strong);box-shadow:0 20px 40px -24px rgba(15,23,42,.25);}
-.value-icon{
-  width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  background:var(--cyan);color:var(--blue);margin-bottom:18px;
-}
-.value-card:nth-child(2n) .value-icon{background:rgba(245,197,66,.16);color:#B98A0C;}
-[data-theme="dark"] .value-card:nth-child(2n) .value-icon{color:var(--yellow);}
-.value-icon svg{width:22px;height:22px;}
-.value-card h3{font-size:18px;margin-bottom:8px;}
-.value-card p{color:var(--text-soft);font-size:14.5px;}
-
-/* ============================================================
-   TEAM
-   ============================================================ */
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
-.team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;}
-.team-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -24px rgba(15,23,42,.25);}
-.team-photo{aspect-ratio:4/3.6;background:linear-gradient(135deg,var(--lavender),var(--cyan));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.team-photo img{width:100%;height:100%;object-fit:cover;}
-.team-photo .ph-initial{font-family:var(--font-display);font-size:44px;font-weight:700;color:var(--blue-dim);opacity:.5;}
-.team-info{padding:18px 20px 22px;}
-.team-info h3{font-size:16.5px;margin-bottom:3px;}
-.team-info .role{color:var(--blue);font-size:13.5px;font-weight:600;}
-.team-info .li-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--text-soft);font-weight:600;}
-.team-info .li-link svg{width:15px;height:15px;}
-
-/* ============================================================
-   EVENTS
-   ============================================================ */
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.event-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;cursor:pointer;}
-.event-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -24px rgba(15,23,42,.25);}
-.event-media{aspect-ratio:16/10;position:relative;background:linear-gradient(135deg,var(--navy) 0%, #16224a 100%);overflow:hidden;}
-[data-theme="dark"] .event-media{background:linear-gradient(135deg,#111827 0%, #1b2740 100%);}
-.event-media img{width:100%;height:100%;object-fit:cover;}
-.event-media .grid-overlay{position:absolute;inset:0;opacity:.5;}
-.event-cat{position:absolute;top:14px;inset-inline-start:14px;background:var(--yellow);color:#0B1020;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:999px;}
-.event-body{padding:22px;}
-.event-body h3{font-size:18px;margin-bottom:8px;}
-.event-body p{color:var(--text-soft);font-size:14.5px;margin-bottom:16px;}
-.event-meta{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-.event-meta span{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-soft);font-weight:600;}
-.event-meta svg{width:15px;height:15px;flex-shrink:0;}
-
-/* modal */
-.modal-backdrop{position:fixed;inset:0;background:rgba(7,11,20,.6);z-index:1300;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;}
-.modal-backdrop.open{opacity:1;visibility:visible;}
-.modal{background:var(--surface);max-width:560px;width:100%;border-radius:22px;overflow:hidden;max-height:88vh;overflow-y:auto;transform:scale(.96);transition:transform .3s ease;}
-.modal-backdrop.open .modal{transform:scale(1);}
-.modal-media{aspect-ratio:16/9;background:linear-gradient(135deg,var(--navy),#16224a);position:relative;}
-.modal-close{position:absolute;top:14px;inset-inline-end:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;}
-.modal-body{padding:30px;}
-.modal-body h3{font-size:22px;margin-bottom:14px;}
-.modal-body p.desc{color:var(--text-soft);margin-bottom:22px;}
-.modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
-.modal-meta div{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
-.modal-meta .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-soft);font-weight:700;margin-bottom:3px;}
-.modal-meta .v{font-size:14px;font-weight:600;}
-
-/* ============================================================
-   IMPACT (dark strong)
-   ============================================================ */
-.impact{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
-[data-theme="dark"] .impact{background:#0D1320;}
-.impact .eyebrow{color:var(--yellow);}
-.impact .eyebrow::before{background:var(--yellow);}
-.impact .section-head h2{color:#fff;}
-.impact .section-head p{color:rgba(255,255,255,.62);}
-.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;}
-.impact-cell{background:rgba(255,255,255,.03);padding:34px 24px;}
-.impact-cell .num{font-family:var(--font-display);font-size:40px;font-weight:700;color:#fff;}
-.impact-cell .num .yl{color:var(--yellow);}
-.impact-cell .label{color:rgba(255,255,255,.6);font-size:13.5px;margin-top:6px;font-weight:600;}
-.impact-foot{margin-top:36px;display:flex;justify-content:center;}
-.impact-foot .btn-ghost{color:var(--yellow);}
-
-/* ============================================================
-   JOIN CTA
-   ============================================================ */
-.join{
-  background:linear-gradient(135deg, var(--blue) 0%, #1e40c9 100%);
-  border-radius:28px;padding:80px 40px;text-align:center;position:relative;overflow:hidden;
-  color:#fff;
-}
-[data-theme="dark"] .join{background:linear-gradient(135deg,#1d3a8f 0%, #0f2264 100%);}
-.join h2{color:#fff;font-size:clamp(30px,4.4vw,46px);max-width:640px;margin:0 auto 16px;}
-.join p{color:rgba(255,255,255,.82);max-width:560px;margin:0 auto 34px;font-size:16.5px;}
-.join-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.join-dots{position:absolute;inset:0;opacity:.5;pointer-events:none;}
-
-/* ============================================================
-   PARTNERS
-   ============================================================ */
-.partners-row{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-.partner-box{
-  aspect-ratio:2.4/1;border:1px dashed var(--border-strong);border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--text-soft);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  filter:grayscale(1);opacity:.7;transition:opacity .25s ease;
-}
-.partner-box:hover{opacity:1;}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer{background:var(--navy);color:rgba(255,255,255,.72);padding:80px 0 30px;}
-[data-theme="dark"] footer{background:#05070C;}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.1);}
-.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.footer-brand .brand-name{color:#fff;}
-.footer-col h4{color:#fff;font-size:13.5px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;font-family:var(--font-body);font-weight:700;}
-.footer-col ul{display:flex;flex-direction:column;gap:11px;}
-.footer-col a{font-size:14.5px;transition:color .2s ease;}
-.footer-col a:hover{color:#fff;}
-.footer-col p.placeholder{font-size:14.5px;color:rgba(255,255,255,.5);}
-.footer-desc{font-size:14.5px;max-width:280px;color:rgba(255,255,255,.6);}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:12px;}
-.footer-bottom p{font-size:13px;color:rgba(255,255,255,.45);}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width:1024px){
-  .about-grid{grid-template-columns:1fr;gap:44px;}
-  .values-grid{grid-template-columns:repeat(2,1fr);}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
-  .events-grid{grid-template-columns:repeat(2,1fr);}
-  .impact-grid{grid-template-columns:repeat(2,1fr);}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:36px;}
-  .partners-row{grid-template-columns:repeat(3,1fr);}
-}
-@media (max-width:860px){
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .section{padding:80px 0;}
-}
-@media (max-width:640px){
-  .values-grid{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:1fr;}
-  .events-grid{grid-template-columns:1fr;}
-  .impact-grid{grid-template-columns:1fr 1fr;}
-  .stat-grid{grid-template-columns:1fr 1fr;}
-  .footer-grid{grid-template-columns:1fr;}
-  .partners-row{grid-template-columns:repeat(2,1fr);}
-  .join{padding:56px 24px;border-radius:20px;}
-  .hero{padding-top:calc(var(--nav-h) + 60px);}
-  .modal-meta{grid-template-columns:1fr;}
-}
-
-/* focus visibility */
-a:focus-visible, button:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LISCAE Fintech Club — IFC</title>
+  <meta name="description" content="LISCAE Fintech Club (IFC), une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.">
+  <meta property="og:title" content="LISCAE Fintech Club — IFC">
+  <meta property="og:description" content="Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/og-image.jpg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563EB'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='48' font-weight='700' fill='white' text-anchor='middle'%3EIFC%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --color-bg: #FAFAFC;
+      --color-bg-alt: #F3F0FF;
+      --color-bg-cyan: #EAF8FA;
+      --color-card: #FFFFFF;
+      --color-text: #0B1020;
+      --color-text-secondary: #626875;
+      --color-border: rgba(15, 23, 42, 0.08);
+      --color-primary: #2563EB;
+      --color-primary-hover: #1D4ED8;
+      --color-accent: #F5C542;
+      --color-accent-hover: #EAB308;
+      --color-dark: #0B1020;
+      --color-footer: #070B14;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-family-ar: 'Cairo', system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #070B14;
+      --color-bg-alt: #0D1320;
+      --color-bg-cyan: #0D1320;
+      --color-card: #111827;
+      --color-text: #F8FAFC;
+      --color-text-secondary: #A7B0C0;
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-primary: #3B82F6;
+      --color-primary-hover: #60A5FA;
+      --color-accent: #F5C542;
+      --color-accent-hover: #FCD34D;
+      --color-dark: #F8FAFC;
+      --color-footer: #050810;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-family);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      transition: background-color var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+    [dir="rtl"] body { font-family: var(--font-family-ar); }
+    [dir="rtl"] .ltr-only { display: none; }
+    [dir="ltr"] .rtl-only { display: none; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(250, 250, 252, 0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border);
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+    [data-theme="dark"] .header { background: rgba(7, 11, 20, 0.85); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.1rem; color: var(--color-text); }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--color-primary), #1E40AF);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 0.85rem; letter-spacing: -0.5px; flex-shrink: 0;
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo-text span:first-child { font-size: 0.75rem; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.05em; text-transform: uppercase; }
+    .logo-text span:last-child { font-size: 1rem; font-weight: 700; }
+    .nav-desktop { display: flex; align-items: center; gap: 32px; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--color-text-secondary); transition: color var(--transition); position: relative; }
+    .nav-link:hover, .nav-link.active { color: var(--color-text); }
+    .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--color-primary); border-radius: 2px; }
+    [dir="rtl"] .nav-link.active::after { left: auto; right: 0; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-icon {
+      width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-secondary); background: var(--color-card); border: 1px solid var(--color-border);
+      transition: all var(--transition);
+    }
+    .btn-icon:hover { color: var(--color-text); border-color: var(--color-primary); transform: translateY(-1px); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+      background: var(--color-primary); color: white; font-weight: 600; font-size: 0.9rem;
+      border-radius: var(--radius); transition: all var(--transition);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+      background: transparent; color: var(--color-text); font-weight: 600; font-size: 0.9rem;
+      border-radius: var(--radius); border: 1px solid var(--color-border); transition: all var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-2px); }
+    .lang-selector { position: relative; }
+    .lang-toggle {
+      display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius);
+      border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-text);
+      font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all var(--transition);
+    }
+    .lang-toggle:hover { border-color: var(--color-primary); }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 8px); right: 0; background: var(--color-card);
+      border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow-lg);
+      padding: 8px; min-width: 160px; opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: all var(--transition); z-index: 1001;
+    }
+    .lang-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    [dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+    .lang-option { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; cursor: pointer; transition: background var(--transition); font-size: 0.9rem; color: var(--color-text); }
+    .lang-option:hover, .lang-option.active { background: var(--color-bg-alt); }
+    .lang-option.active { color: var(--color-primary); font-weight: 600; }
+    .mobile-menu-btn { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-text); }
+    .mobile-nav {
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--color-bg); z-index: 999; padding: 24px;
+      transform: translateX(100%); transition: transform var(--transition);
+    }
+    [dir="rtl"] .mobile-nav { transform: translateX(-100%); }
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav-link { display: block; padding: 16px 0; font-size: 1.1rem; font-weight: 600; color: var(--color-text); border-bottom: 1px solid var(--color-border); }
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 120px 0 80px; overflow: hidden;
+      background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-cyan) 50%, var(--color-bg) 100%);
+    }
+    [data-theme="dark"] .hero { background: linear-gradient(180deg, var(--color-bg) 0%, #0a1220 50%, var(--color-bg) 100%); }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+    [data-theme="dark"] .hero-grid { background-image: linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px); }
+    .hero-nodes { position: absolute; inset: 0; }
+    .hero-node { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); opacity: 0.4; animation: float 8s ease-in-out infinite; }
+    .hero-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+    .hero-node:nth-child(2) { top: 35%; left: 80%; animation-delay: 1s; }
+    .hero-node:nth-child(3) { top: 60%; left: 25%; animation-delay: 2s; }
+    .hero-node:nth-child(4) { top: 75%; left: 70%; animation-delay: 3s; }
+    .hero-node:nth-child(5) { top: 15%; left: 55%; animation-delay: 4s; }
+    .hero-node:nth-child(6) { top: 50%; left: 90%; animation-delay: 5s; }
+    .hero-node:nth-child(7) { top: 80%; left: 40%; animation-delay: 6s; }
+    .hero-node:nth-child(8) { top: 30%; left: 45%; animation-delay: 7s; }
+    .hero-line { position: absolute; height: 1px; background: linear-gradient(90deg, transparent, rgba(37,99,235,0.15), transparent); transform-origin: left center; }
+    [data-theme="dark"] .hero-line { background: linear-gradient(90deg, transparent, rgba(59,130,246,0.2), transparent); }
+    .hero-deco { position: absolute; font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--color-text-secondary); opacity: 0.15; font-weight: 300; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; margin: 0 auto; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+      background: var(--color-card); border: 1px solid var(--color-border); border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 32px; box-shadow: var(--shadow-sm);
+    }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+    .hero-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--color-text); }
+    .hero-title .highlight { background: linear-gradient(135deg, var(--color-primary), #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-cta { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .hero-link { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); font-weight: 600; font-size: 0.95rem; transition: gap var(--transition); }
+    .hero-link:hover { gap: 10px; }
+    .section { padding: 100px 0; position: relative; }
+    .section-alt { background: var(--color-bg-alt); }
+    .section-cyan { background: var(--color-bg-cyan); }
+    .section-dark { background: linear-gradient(135deg, #0B1020 0%, #1a1f3c 100%); color: #F8FAFC; }
+    [data-theme="dark"] .section-dark { background: linear-gradient(135deg, #050810 0%, #0f1425 100%); }
+    .section-dark .section-label, .section-dark .section-title, .section-dark .section-desc { color: #F8FAFC; }
+    .section-dark .section-desc { color: #A7B0C0; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--color-accent); border-radius: 2px; }
+    [dir="rtl"] .section-label::before { order: 2; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; color: var(--color-text); }
+    .section-desc { font-size: 1.1rem; color: var(--color-text-secondary); max-width: 600px; line-height: 1.7; }
+    .section-header { margin-bottom: 64px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-desc { margin: 0 auto; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text p { font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 20px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .stat-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; text-align: center; transition: all var(--transition); }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
+    .stat-value { font-size: 2.5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 8px; font-family: 'Inter', monospace; }
+    .stat-label { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 500; }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .value-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px 32px; transition: all var(--transition); position: relative; overflow: hidden; }
+    .value-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); opacity: 0; transition: opacity var(--transition); }
+    .value-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,0.2); }
+    .value-card:hover::before { opacity: 1; }
+    .value-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(245,197,66,0.1)); display: flex; align-items: center; justify-content: center; color: var(--color-primary); margin-bottom: 24px; transition: all var(--transition); }
+    .value-card:hover .value-icon { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); color: white; transform: scale(1.1); }
+    .value-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: var(--color-text); }
+    .value-desc { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.6; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .team-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .team-photo { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-cyan)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .team-photo-placeholder { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; }
+    .team-info { padding: 24px; }
+    .team-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: var(--color-text); }
+    .team-role { font-size: 0.9rem; color: var(--color-primary); font-weight: 600; margin-bottom: 16px; }
+    .team-social { display: flex; gap: 8px; }
+    .team-social a { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--color-bg); color: var(--color-text-secondary); transition: all var(--transition); }
+    .team-social a:hover { background: var(--color-primary); color: white; }
+    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .event-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); cursor: pointer; }
+    .event-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,0.2); }
+    .event-image { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-cyan)); position: relative; overflow: hidden; }
+    .event-image img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition); }
+    .event-card:hover .event-image img { transform: scale(1.05); }
+    .event-category { position: absolute; top: 16px; left: 16px; padding: 6px 12px; background: var(--color-accent); color: #0B1020; font-size: 0.75rem; font-weight: 700; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    [dir="rtl"] .event-category { left: auto; right: 16px; }
+    .event-info { padding: 24px; }
+    .event-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--color-text); }
+    .event-desc { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 16px; }
+    .event-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .event-meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--color-text-secondary); }
+    .event-meta-item i { width: 16px; color: var(--color-primary); }
+    .event-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); font-weight: 600; font-size: 0.9rem; transition: gap var(--transition); }
+    .event-btn:hover { gap: 10px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 48px; }
+    .impact-item { text-align: center; padding: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); transition: all var(--transition); }
+    .impact-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+    .impact-value { font-size: 3rem; font-weight: 800; color: var(--color-accent); margin-bottom: 8px; }
+    .impact-label { font-size: 0.95rem; color: #A7B0C0; font-weight: 500; }
+    .impact-cta { text-align: center; }
+    .join-content { text-align: center; max-width: 700px; margin: 0 auto; }
+    .join-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 20px; color: #F8FAFC; }
+    .join-desc { font-size: 1.1rem; color: #A7B0C0; margin-bottom: 40px; line-height: 1.7; }
+    .join-cta { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .join-cta .btn-primary { background: var(--color-accent); color: #0B1020; box-shadow: 0 4px 16px rgba(245,197,66,0.3); }
+    .join-cta .btn-primary:hover { background: #FCD34D; box-shadow: 0 8px 24px rgba(245,197,66,0.4); }
+    .join-cta .btn-secondary { border-color: rgba(255,255,255,0.2); color: #F8FAFC; }
+    .join-cta .btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .partner-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 40px 24px; display: flex; align-items: center; justify-content: center; min-height: 120px; transition: all var(--transition); filter: grayscale(100%); opacity: 0.6; }
+    .partner-card:hover { filter: grayscale(0%); opacity: 1; border-color: var(--color-primary); transform: translateY(-2px); }
+    .partner-placeholder { font-size: 0.85rem; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
+    .footer { background: var(--color-footer); color: #A7B0C0; padding: 80px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
+    .footer-brand .logo { color: #F8FAFC; margin-bottom: 16px; }
+    .footer-brand .logo-icon { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); }
+    .footer-desc { font-size: 0.95rem; line-height: 1.7; max-width: 300px; }
+    .footer-title { font-size: 0.85rem; font-weight: 700; color: #F8FAFC; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 24px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { font-size: 0.95rem; transition: color var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+    .footer-links a:hover { color: var(--color-primary); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: #A7B0C0; transition: all var(--transition); }
+    .footer-social a:hover { background: var(--color-primary); color: white; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: all var(--transition); }
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    .modal { background: var(--color-card); border-radius: var(--radius-lg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; transform: translateY(20px) scale(0.98); transition: transform var(--transition); box-shadow: var(--shadow-lg); }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .modal-header { position: relative; height: 200px; background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-cyan)); overflow: hidden; }
+    .modal-header img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; color: var(--color-text); transition: all var(--transition); z-index: 10; }
+    [dir="rtl"] .modal-close { right: auto; left: 16px; }
+    .modal-close:hover { background: white; transform: rotate(90deg); }
+    .modal-body { padding: 32px; }
+    .modal-category { display: inline-block; padding: 4px 12px; background: var(--color-accent); color: #0B1020; font-size: 0.75rem; font-weight: 700; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: var(--color-text); }
+    .modal-desc { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 24px; }
+    .modal-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+    .modal-meta-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--color-text-secondary); }
+    .modal-meta-item i { color: var(--color-primary); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+    .stagger-6 { transition-delay: 0.6s; }
+    @media (max-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .mobile-nav { display: block; }
+      .header-actions .btn-primary { display: none; }
+      .hero { padding: 100px 0 60px; }
+      .hero-cta { flex-direction: column; width: 100%; }
+      .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .impact-value { font-size: 2rem; }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .section { padding: 60px 0; }
+      .section-header { margin-bottom: 40px; }
+      .join-cta { flex-direction: column; width: 100%; }
+      .join-cta .btn-primary, .join-cta .btn-secondary { width: 100%; justify-content: center; }
+      .modal-meta { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    ::selection { background: rgba(37,99,235,0.2); color: var(--color-text); }
+  </style>
+<base target="_blank">
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
-<header id="site-header">
-  <div class="container nav-inner">
-    <a href="#accueil" class="brand">
-      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="38" height="38" rx="11" fill="var(--navy)"/>
-        <path d="M12 27V14.5L20 20.5L28 14.5V27" stroke="var(--yellow)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="20" cy="20.5" r="1.6" fill="var(--yellow)"/>
-      </svg>
-      <span class="brand-name" data-i18n="brand.name">IFC<small data-i18n="brand.full">LISCAE Fintech Club</small></span>
-    </a>
-
-    <nav class="nav-links" id="nav-links">
-      <a href="#accueil" data-i18n="nav.home">Accueil</a>
-      <a href="#about" data-i18n="nav.about">À propos</a>
-      <a href="#valeurs" data-i18n="nav.values">Valeurs</a>
-      <a href="#equipe" data-i18n="nav.team">Équipe</a>
-      <a href="#evenements" data-i18n="nav.events">Événements</a>
-      <a href="#partenaires" data-i18n="nav.partners">Partenaires</a>
-    </nav>
-
-    <div class="nav-actions">
-      <div class="lang-wrap" id="lang-wrap">
-        <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false">
-          <span id="lang-flag">🇫🇷</span><span id="lang-label">Français</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">IFC</div>
+        <div class="logo-text">
+          <span data-i18n="logo_subtitle">LISCAE Fintech Club</span>
+          <span>IFC</span>
+        </div>
+      </a>
+      <nav class="nav-desktop">
+        <a href="#accueil" class="nav-link active" data-i18n="nav_home">Accueil</a>
+        <a href="#apropos" class="nav-link" data-i18n="nav_about">À propos</a>
+        <a href="#valeurs" class="nav-link" data-i18n="nav_values">Valeurs</a>
+        <a href="#equipe" class="nav-link" data-i18n="nav_team">Équipe</a>
+        <a href="#evenements" class="nav-link" data-i18n="nav_events">Événements</a>
+        <a href="#partenaires" class="nav-link" data-i18n="nav_partners">Partenaires</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-toggle" id="langToggle" aria-label="Changer de langue">
+            <span id="currentLangFlag">🇫🇷</span>
+            <span id="currentLangLabel">Français</span>
+            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-option active" data-lang="fr"><span>🇫🇷</span><span>Français</span></div>
+            <div class="lang-option" data-lang="en"><span>🇬🇧</span><span>English</span></div>
+            <div class="lang-option" data-lang="ar"><span>🇸🇦</span><span>العربية</span></div>
+          </div>
+        </div>
+        <button class="btn-icon" id="themeToggle" aria-label="Changer de thème">
+          <i data-lucide="moon" id="themeIcon" style="width:18px;height:18px;"></i>
         </button>
-        <div class="lang-menu" role="menu">
-          <button data-lang="fr" class="active" role="menuitem">🇫🇷 Français</button>
-          <button data-lang="ar" role="menuitem">🇸🇦 العربية</button>
-          <button data-lang="en" role="menuitem">🇬🇧 English</button>
+        <a href="#rejoindre" class="btn-primary" data-i18n="nav_join">Rejoindre l'IFC</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <i data-lucide="menu" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#accueil" class="mobile-nav-link" data-i18n="nav_home">Accueil</a>
+    <a href="#apropos" class="mobile-nav-link" data-i18n="nav_about">À propos</a>
+    <a href="#valeurs" class="mobile-nav-link" data-i18n="nav_values">Valeurs</a>
+    <a href="#equipe" class="mobile-nav-link" data-i18n="nav_team">Équipe</a>
+    <a href="#evenements" class="mobile-nav-link" data-i18n="nav_events">Événements</a>
+    <a href="#partenaires" class="mobile-nav-link" data-i18n="nav_partners">Partenaires</a>
+    <a href="#rejoindre" class="mobile-nav-link" data-i18n="nav_join" style="color: var(--color-primary);">Rejoindre l'IFC</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="accueil">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-nodes">
+        <div class="hero-node"></div><div class="hero-node"></div><div class="hero-node"></div><div class="hero-node"></div>
+        <div class="hero-node"></div><div class="hero-node"></div><div class="hero-node"></div><div class="hero-node"></div>
+      </div>
+      <div class="hero-line" style="top:25%;left:10%;width:30%;transform:rotate(15deg);"></div>
+      <div class="hero-line" style="top:45%;left:60%;width:25%;transform:rotate(-10deg);"></div>
+      <div class="hero-line" style="top:65%;left:20%;width:20%;transform:rotate(5deg);"></div>
+      <div class="hero-deco" style="top:15%;left:8%;">IFC_01</div>
+      <div class="hero-deco" style="top:70%;left:85%;">&lt;fintech/&gt;</div>
+      <div class="hero-deco" style="top:40%;left:5%;">{}</div>
+      <div class="hero-deco" style="top:85%;left:15%;">01 →</div>
+      <div class="hero-deco" style="top:30%;left:90%;">data</div>
+      <div class="hero-deco" style="top:55%;left:8%;">innov</div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <span class="dot"></span>
+          <span data-i18n="hero_eyebrow">LISCAE Fintech Club</span>
+        </div>
+        <h1 class="hero-title reveal stagger-1" data-i18n="hero_title">Le <span class="highlight">Fintech Club</span> de LISCAE</h1>
+        <p class="hero-subtitle reveal stagger-2" data-i18n="hero_subtitle">Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation. Apprenons, collaborons et construisons les solutions financières de demain.</p>
+        <div class="hero-cta reveal stagger-3">
+          <a href="#rejoindre" class="btn-primary">
+            <span data-i18n="hero_cta_primary">Rejoindre l'IFC</span>
+            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+          </a>
+          <a href="#apropos" class="btn-secondary">
+            <span data-i18n="hero_cta_secondary">Découvrir IFC</span>
+            <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+          </a>
+        </div>
+        <div style="margin-top:24px;" class="reveal stagger-4">
+          <a href="#evenements" class="hero-link">
+            <span data-i18n="hero_cta_tertiary">Voir nos événements</span>
+            <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+          </a>
         </div>
       </div>
-
-      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
-        <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
-        <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-
-      <a href="#join" class="btn btn-primary" id="nav-join-btn" style="display:none" data-i18n="nav.join">Rejoindre l'IFC</a>
-
-      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
     </div>
-  </div>
-</header>
+  </section>
 
-<div class="drawer-backdrop" id="drawer-backdrop"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-top">
-    <span class="brand-name">IFC</span>
-    <button class="icon-btn" id="drawer-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <nav>
-    <a href="#accueil" data-i18n="nav.home">Accueil</a>
-    <a href="#about" data-i18n="nav.about">À propos</a>
-    <a href="#valeurs" data-i18n="nav.values">Valeurs</a>
-    <a href="#equipe" data-i18n="nav.team">Équipe</a>
-    <a href="#evenements" data-i18n="nav.events">Événements</a>
-    <a href="#partenaires" data-i18n="nav.partners">Partenaires</a>
-  </nav>
-  <a href="#join" class="btn btn-primary" data-i18n="nav.join">Rejoindre l'IFC</a>
-</div>
-
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-<section class="hero" id="accueil">
-  <div class="hero-canvas" aria-hidden="true">
-    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
-          <path d="M46 0H0V46" fill="none" stroke="var(--border)" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="1200" height="700" fill="url(#grid)" opacity="0.6"/>
-      <g stroke="var(--blue)" stroke-width="1" opacity="0.18">
-        <line x1="120" y1="140" x2="320" y2="230"/>
-        <line x1="320" y1="230" x2="240" y2="410"/>
-        <line x1="900" y1="120" x2="1040" y2="260"/>
-        <line x1="1040" y1="260" x2="960" y2="440"/>
-        <line x1="960" y1="440" x2="1100" y2="540"/>
-      </g>
-      <g fill="var(--yellow)" opacity="0.55">
-        <circle cx="120" cy="140" r="3.5"/>
-        <circle cx="320" cy="230" r="3"/>
-        <circle cx="240" cy="410" r="3"/>
-        <circle cx="1040" cy="260" r="3.5"/>
-        <circle cx="960" cy="440" r="3"/>
-        <circle cx="1100" cy="540" r="3"/>
-      </g>
-      <text x="90" y="590" font-family="Space Grotesk" font-size="13" fill="var(--blue)" opacity="0.28">IFC · 01</text>
-      <text x="1020" y="120" font-family="Space Grotesk" font-size="13" fill="var(--blue)" opacity="0.28">{ fintech }</text>
-    </svg>
-  </div>
-  <div class="container">
-    <div class="hero-inner">
-      <span class="eyebrow" data-i18n="hero.eyebrow">LISCAE FINTECH CLUB</span>
-      <h1 data-i18n="hero.title">Le <span class="accent">Fintech</span> Club de LISCAE</h1>
-      <p class="lead" data-i18n="hero.subtitle">Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation. Apprenons, collaborons et construisons les solutions financières de demain.</p>
-      <div class="hero-ctas">
-        <a href="#join" class="btn btn-primary" data-i18n="hero.cta1">Rejoindre l'IFC →</a>
-        <a href="#about" class="btn btn-secondary" data-i18n="hero.cta2">Découvrir IFC →</a>
-      </div>
-      <div class="hero-tertiary">
-        <a href="#evenements" class="btn-ghost" data-i18n="hero.cta3">Voir nos événements <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ABOUT + STATS
-     ============================================================ -->
-<section class="section" id="about">
-  <div class="container about-grid">
-    <div class="about-copy reveal">
-      <span class="eyebrow" data-i18n="about.eyebrow">À PROPOS</span>
-      <h2 style="margin-top:14px;font-size:clamp(28px,3.6vw,40px);" data-i18n="about.title">Une communauté tournée vers la finance de demain</h2>
-      <p data-i18n="about.desc">LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.</p>
-    </div>
-    <div class="stat-grid reveal">
-      <div class="stat-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="about.stat1">Membres</div></div>
-      <div class="stat-cell"><div class="num">[<span class="yl">XXXX</span>]</div><div class="label" data-i18n="about.stat2">Année de création</div></div>
-      <div class="stat-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="about.stat3">Événements</div></div>
-      <div class="stat-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="about.stat4">Projets</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     VALUES
-     ============================================================ -->
-<section class="section section-tint" id="valeurs">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="values.eyebrow">NOS PRINCIPES</span>
-      <h2 data-i18n="values.title">Nos valeurs</h2>
-      <p data-i18n="values.subtitle">Les principes qui guident notre communauté et notre vision de la fintech.</p>
-    </div>
-    <div class="values-grid stagger" id="values-grid"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     TEAM
-     ============================================================ -->
-<section class="section" id="equipe">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="team.eyebrow">L'ÉQUIPE</span>
-      <h2 data-i18n="team.title">Notre équipe</h2>
-      <p data-i18n="team.subtitle">Les étudiants qui contribuent à faire grandir la communauté IFC.</p>
-    </div>
-    <div class="team-grid stagger" id="team-grid"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     EVENTS
-     ============================================================ -->
-<section class="section section-tint" id="evenements">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="events.eyebrow">ÉDUCATION &amp; COMMUNAUTÉ</span>
-      <h2 data-i18n="events.title">Nos événements</h2>
-      <p data-i18n="events.subtitle">Découvrez les activités, rencontres, ateliers et initiatives organisés par IFC autour de la fintech, de la technologie et de l'innovation.</p>
-    </div>
-    <div class="events-grid stagger" id="events-grid"></div>
-  </div>
-</section>
-
-<!-- Event modal -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal" role="dialog" aria-modal="true">
-    <div class="modal-media">
-      <button class="modal-close" id="modal-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <h3 id="modal-title"></h3>
-      <p class="desc" id="modal-desc"></p>
-      <div class="modal-meta">
-        <div><div class="k" data-i18n="modal.date">Date</div><div class="v" id="modal-date"></div></div>
-        <div><div class="k" data-i18n="modal.location">Lieu</div><div class="v" id="modal-location"></div></div>
-        <div><div class="k" data-i18n="modal.organizers">Organisateurs</div><div class="v" id="modal-organizers"></div></div>
-        <div><div class="k" data-i18n="modal.participants">Participants</div><div class="v" id="modal-participants"></div></div>
-      </div>
-      <a href="#join" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="modal.cta">Rejoindre notre communauté →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     IMPACT
-     ============================================================ -->
-<section class="section impact">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="impact.eyebrow">EN CHIFFRES</span>
-      <h2 data-i18n="impact.title">Notre impact</h2>
-      <p data-i18n="impact.subtitle">Une communauté qui apprend, construit et partage.</p>
-    </div>
-    <div class="impact-grid reveal">
-      <div class="impact-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="impact.stat1">Participants moyens</div></div>
-      <div class="impact-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="impact.stat2">Projets</div></div>
-      <div class="impact-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="impact.stat3">Heures de formation</div></div>
-      <div class="impact-cell"><div class="num">[<span class="yl">XX</span>]</div><div class="label" data-i18n="impact.stat4">Événements</div></div>
-    </div>
-    <div class="impact-foot reveal">
-      <a href="#evenements" class="btn-ghost" data-i18n="impact.archive">Voir les archives <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     JOIN CTA
-     ============================================================ -->
-<section class="section" id="join" style="padding-top:100px;padding-bottom:100px;">
-  <div class="container">
-    <div class="join reveal">
-      <svg class="join-dots" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g fill="#fff" opacity="0.08">
-          <circle cx="80" cy="60" r="2.5"/><circle cx="160" cy="120" r="2"/><circle cx="1100" cy="80" r="2.5"/>
-          <circle cx="1040" cy="200" r="2"/><circle cx="60" cy="320" r="2"/><circle cx="1140" cy="320" r="2.5"/>
-        </g>
-      </svg>
-      <h2 data-i18n="join.title">Rejoins l'IFC</h2>
-      <p data-i18n="join.desc">Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.</p>
-      <div class="join-ctas">
-        <a href="#join-form" class="btn btn-on-dark" data-i18n="join.cta1">Rejoindre notre communauté →</a>
-        <a href="#evenements" class="btn btn-secondary" style="border-color:rgba(255,255,255,.35);color:#fff" data-i18n="join.cta2">Découvrir nos événements →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PARTNERS
-     ============================================================ -->
-<section class="section" id="partenaires">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="partners.eyebrow">COLLABORATIONS</span>
-      <h2 data-i18n="partners.title">Nos partenaires</h2>
-      <p data-i18n="partners.desc">Nous construirons progressivement un réseau de partenaires partageant notre intérêt pour la technologie financière, l'innovation et le développement des étudiants.</p>
-    </div>
-    <div class="partners-row reveal" id="partners-row"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="38" height="38" rx="11" fill="#111827" stroke="rgba(255,255,255,.12)"/>
-            <path d="M12 27V14.5L20 20.5L28 14.5V27" stroke="var(--yellow)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="20" cy="20.5" r="1.6" fill="var(--yellow)"/>
-          </svg>
-          <span class="brand-name">LISCAE Fintech Club</span>
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="apropos">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-label" data-i18n="about_label">À propos</div>
+          <h2 class="section-title" data-i18n="about_title">Une communauté tournée vers la finance de demain</h2>
+          <p data-i18n="about_desc">LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.</p>
         </div>
-        <p class="footer-desc" data-i18n="footer.desc">Une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.nav">Navigation</h4>
-        <ul>
-          <li><a href="#accueil" data-i18n="nav.home">Accueil</a></li>
-          <li><a href="#about" data-i18n="nav.about">À propos</a></li>
-          <li><a href="#valeurs" data-i18n="nav.values">Valeurs</a></li>
-          <li><a href="#equipe" data-i18n="nav.team">Équipe</a></li>
-          <li><a href="#evenements" data-i18n="nav.events">Événements</a></li>
-          <li><a href="#partenaires" data-i18n="nav.partners">Partenaires</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.community">Communauté</h4>
-        <ul>
-          <li><a href="#join" data-i18n="footer.join">Rejoindre IFC</a></li>
-          <li><a href="#evenements" data-i18n="nav.events">Événements</a></li>
-          <li><a href="#evenements" data-i18n="footer.archives">Archives</a></li>
-          <li><a href="#" data-i18n="footer.linkedin">LinkedIn</a></li>
-          <li><a href="#" data-i18n="footer.instagram">Instagram</a></li>
-          <li><a href="#" data-i18n="footer.facebook">Facebook</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.contact">Contact</h4>
-        <p class="placeholder" data-i18n="footer.email">[Email IFC]</p>
-        <p class="placeholder" style="margin-top:8px" data-i18n="footer.phone">[Téléphone IFC]</p>
-        <p class="placeholder" style="margin-top:8px" data-i18n="footer.address">[Adresse / LISCAE]</p>
+        <div class="stats-grid reveal stagger-2">
+          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_members">Membres</div></div>
+          <div class="stat-card"><div class="stat-value">[XXXX]</div><div class="stat-label" data-i18n="stat_year">Année de création</div></div>
+          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_events">Événements</div></div>
+          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_projects">Projets</div></div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 IFC — LISCAE Fintech Club</p>
-      <p data-i18n="footer.tag">Fait par des étudiants, pour des étudiants.</p>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="section section-alt" id="valeurs">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label" data-i18n="values_label">Nos valeurs</div>
+        <h2 class="section-title" data-i18n="values_title">Nos valeurs</h2>
+        <p class="section-desc" data-i18n="values_subtitle">Les principes qui guident notre communauté et notre vision de la fintech.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal stagger-1">
+          <div class="value-icon"><i data-lucide="lightbulb" style="width:24px;height:24px;"></i></div>
+          <h3 class="value-title" data-i18n="value_innovation_title">Innovation</h3>
+          <p class="value-desc" data-i18n="value_innovation_desc">Explorer de nouvelles idées et imaginer les solutions financières de demain.</p>
+        </div>
+        <div class="value-card reveal stagger-2">
+          <div class="value-icon"><i data-lucide="book-open" style="width:24px;height:24px;"></i></div>
+          <h3 class="value-title" data-i18n="value_learning_title">Apprentissage</h3>
+          <p class="value-desc" data-i18n="value_learning_desc">Développer continuellement nos compétences en finance, technologie et innovation.</p>
+        </div>
+        <div class="value-card reveal stagger-3">
+          <div class="value-icon"><i data-lucide="users" style="width:24px;height:24px;"></i></div>
+          <h3 class="value-title" data-i18n="value_collab_title">Collaboration</h3>
+          <p class="value-desc" data-i18n="value_collab_desc">Créer un environnement où les étudiants apprennent, construisent et progressent ensemble.</p>
+        </div>
+        <div class="value-card reveal stagger-4">
+          <div class="value-icon"><i data-lucide="target" style="width:24px;height:24px;"></i></div>
+          <h3 class="value-title" data-i18n="value_excellence_title">Excellence</h3>
+          <p class="value-desc" data-i18n="value_excellence_desc">Viser la qualité, la curiosité et l'impact dans tout ce que nous entreprenons.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script>
-/* ============================================================
-   DATA — replace freely, no design changes required
-   ============================================================ */
-const TEAM = [
-  {name:"placeholder", role:"president", image:"/assets/team/member-01.jpg", linkedin:"#"},
-  {name:"placeholder", role:"vp", image:"/assets/team/member-02.jpg", linkedin:"#"},
-  {name:"placeholder", role:"finance", image:"/assets/team/member-03.jpg", linkedin:"#"},
-  {name:"placeholder", role:"comms", image:"/assets/team/member-04.jpg", linkedin:"#"},
-  {name:"placeholder", role:"events", image:"/assets/team/member-05.jpg", linkedin:"#"},
-  {name:"placeholder", role:"programs", image:"/assets/team/member-06.jpg", linkedin:"#"},
-];
+  <!-- ===== TEAM ===== -->
+  <section class="section" id="equipe">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label" data-i18n="team_label">Notre équipe</div>
+        <h2 class="section-title" data-i18n="team_title">Notre équipe</h2>
+        <p class="section-desc" data-i18n="team_subtitle">Les étudiants qui contribuent à faire grandir la communauté IFC.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal stagger-1">
+          <div class="team-photo">
+            <img src="/assets/team/member-01.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_president">Président(e)</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-2">
+          <div class="team-photo">
+            <img src="/assets/team/member-02.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_vp">Vice-président(e)</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-3">
+          <div class="team-photo">
+            <img src="/assets/team/member-03.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_finance">Responsable Finance</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-4">
+          <div class="team-photo">
+            <img src="/assets/team/member-04.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_comm">Responsable Communication</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-5">
+          <div class="team-photo">
+            <img src="/assets/team/member-05.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_events">Responsable Événements</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-6">
+          <div class="team-photo">
+            <img src="/assets/team/member-06.jpg" alt="[Nom du membre]" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IF</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">[Nom du membre]</h3>
+            <p class="team-role" data-i18n="role_programs">Responsable Programmes</p>
+            <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-const EVENTS = [
-  {image:"/assets/events/event-01.jpg", date:"placeholder", location:"placeholder", organizers:"IFC", participants:"placeholder"},
-  {image:"/assets/events/event-02.jpg", date:"placeholder", location:"placeholder", organizers:"IFC", participants:"placeholder"},
-  {image:"/assets/events/event-03.jpg", date:"placeholder", location:"placeholder", organizers:"IFC", participants:"placeholder"},
-];
+  <!-- ===== EVENTS ===== -->
+  <section class="section section-cyan" id="evenements">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label" data-i18n="events_label">Éducation & Communauté</div>
+        <h2 class="section-title" data-i18n="events_title">Nos événements</h2>
+        <p class="section-desc" data-i18n="events_subtitle">Découvrez les activités, rencontres, ateliers et initiatives organisés par IFC autour de la fintech, de la technologie et de l'innovation.</p>
+      </div>
+      <div class="events-grid">
+        <div class="event-card reveal stagger-1" onclick="openModal(0)">
+          <div class="event-image">
+            <img src="/assets/events/event-01.jpg" alt="[Événement IFC]" onerror="this.style.display='none'">
+            <span class="event-category" data-i18n="event_cat_workshop">Atelier</span>
+          </div>
+          <div class="event-info">
+            <h3 class="event-title">[Titre de l'événement]</h3>
+            <p class="event-desc">[Courte description de l'événement]</p>
+            <div class="event-meta">
+              <div class="event-meta-item"><i data-lucide="calendar" style="width:16px;height:16px;"></i><span>[Date]</span></div>
+              <div class="event-meta-item"><i data-lucide="map-pin" style="width:16px;height:16px;"></i><span>[Lieu]</span></div>
+            </div>
+            <span class="event-btn"><span data-i18n="event_details">Voir les détails</span><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+          </div>
+        </div>
+        <div class="event-card reveal stagger-2" onclick="openModal(1)">
+          <div class="event-image">
+            <img src="/assets/events/event-02.jpg" alt="[Événement IFC]" onerror="this.style.display='none'">
+            <span class="event-category" data-i18n="event_cat_conference">Conférence</span>
+          </div>
+          <div class="event-info">
+            <h3 class="event-title">[Titre de l'événement]</h3>
+            <p class="event-desc">[Courte description de l'événement]</p>
+            <div class="event-meta">
+              <div class="event-meta-item"><i data-lucide="calendar" style="width:16px;height:16px;"></i><span>[Date]</span></div>
+              <div class="event-meta-item"><i data-lucide="map-pin" style="width:16px;height:16px;"></i><span>[Lieu]</span></div>
+            </div>
+            <span class="event-btn"><span data-i18n="event_details">Voir les détails</span><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+          </div>
+        </div>
+        <div class="event-card reveal stagger-3" onclick="openModal(2)">
+          <div class="event-image">
+            <img src="/assets/events/event-03.jpg" alt="[Événement IFC]" onerror="this.style.display='none'">
+            <span class="event-category" data-i18n="event_cat_hackathon">Hackathon</span>
+          </div>
+          <div class="event-info">
+            <h3 class="event-title">[Titre de l'événement]</h3>
+            <p class="event-desc">[Courte description de l'événement]</p>
+            <div class="event-meta">
+              <div class="event-meta-item"><i data-lucide="calendar" style="width:16px;height:16px;"></i><span>[Date]</span></div>
+              <div class="event-meta-item"><i data-lucide="map-pin" style="width:16px;height:16px;"></i><span>[Lieu]</span></div>
+            </div>
+            <span class="event-btn"><span data-i18n="event_details">Voir les détails</span><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-const PARTNERS = [
-  "/assets/partners/partner-01.svg",
-  "/assets/partners/partner-02.svg",
-  "/assets/partners/partner-03.svg",
-  "/assets/partners/partner-04.svg",
-  "/assets/partners/partner-05.svg",
-];
-
-const VALUE_ICONS = {
-  innovation: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2z"/></svg>',
-  apprentissage: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>',
-  collaboration: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M2.5 20c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2M14.8 15.2c2.4.3 4.2 2.3 4.2 4.8"/></svg>',
-  excellence: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 5.9L21 8.8l-4.5 4.3L17.7 20 12 16.7 6.3 20l1.2-6.9L3 8.8l6.4-.9L12 2z"/></svg>',
-};
-
-/* ============================================================
-   TRANSLATIONS
-   ============================================================ */
-const I18N = {
-  fr: {
-    "brand.name":"IFC","brand.full":"LISCAE Fintech Club",
-    "nav.home":"Accueil","nav.about":"À propos","nav.values":"Valeurs","nav.team":"Équipe","nav.events":"Événements","nav.partners":"Partenaires","nav.join":"Rejoindre l'IFC",
-    "hero.eyebrow":"LISCAE FINTECH CLUB",
-    "hero.title":"Le <span class=\"accent\">Fintech</span> Club de LISCAE",
-    "hero.subtitle":"Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation. Apprenons, collaborons et construisons les solutions financières de demain.",
-    "hero.cta1":"Rejoindre l'IFC →","hero.cta2":"Découvrir IFC →","hero.cta3":"Voir nos événements",
-    "about.eyebrow":"À PROPOS","about.title":"Une communauté tournée vers la finance de demain",
-    "about.desc":"LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.",
-    "about.stat1":"Membres","about.stat2":"Année de création","about.stat3":"Événements","about.stat4":"Projets",
-    "values.eyebrow":"NOS PRINCIPES","values.title":"Nos valeurs","values.subtitle":"Les principes qui guident notre communauté et notre vision de la fintech.",
-    "value.innovation.title":"Innovation","value.innovation.desc":"Explorer de nouvelles idées et imaginer les solutions financières de demain.",
-    "value.apprentissage.title":"Apprentissage","value.apprentissage.desc":"Développer continuellement nos compétences en finance, technologie et innovation.",
-    "value.collaboration.title":"Collaboration","value.collaboration.desc":"Créer un environnement où les étudiants apprennent, construisent et progressent ensemble.",
-    "value.excellence.title":"Excellence","value.excellence.desc":"Viser la qualité, la curiosité et l'impact dans tout ce que nous entreprenons.",
-    "team.eyebrow":"L'ÉQUIPE","team.title":"Notre équipe","team.subtitle":"Les étudiants qui contribuent à faire grandir la communauté IFC.",
-    "role.president":"Président(e)","role.vp":"Vice-président(e)","role.finance":"Responsable Finance","role.comms":"Responsable Communication","role.events":"Responsable Événements","role.programs":"Responsable Programmes",
-    "team.name":"[Nom du membre]","team.linkedin":"LinkedIn",
-    "events.eyebrow":"ÉDUCATION & COMMUNAUTÉ","events.title":"Nos événements","events.subtitle":"Découvrez les activités, rencontres, ateliers et initiatives organisés par IFC autour de la fintech, de la technologie et de l'innovation.",
-    "event.tag":"ÉVÉNEMENT IFC","event.title":"[Titre de l'événement]","event.desc":"[Courte description de l'événement]","event.cta":"Voir les détails →",
-    "event.date":"[Date]","event.location":"[Lieu]",
-    "modal.date":"Date","modal.location":"Lieu","modal.organizers":"Organisateurs","modal.participants":"Participants","modal.cta":"Rejoindre notre communauté →",
-    "modal.participants.value":"[Participants]",
-    "impact.eyebrow":"EN CHIFFRES","impact.title":"Notre impact","impact.subtitle":"Une communauté qui apprend, construit et partage.",
-    "impact.stat1":"Participants moyens","impact.stat2":"Projets","impact.stat3":"Heures de formation","impact.stat4":"Événements","impact.archive":"Voir les archives",
-    "join.title":"Rejoins l'IFC","join.desc":"Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.",
-    "join.cta1":"Rejoindre notre communauté →","join.cta2":"Découvrir nos événements →",
-    "partners.eyebrow":"COLLABORATIONS","partners.title":"Nos partenaires","partners.desc":"Nous construirons progressivement un réseau de partenaires partageant notre intérêt pour la technologie financière, l'innovation et le développement des étudiants.",
-    "partner.placeholder":"[ PARTENAIRE ]",
-    "footer.desc":"Une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.",
-    "footer.nav":"Navigation","footer.community":"Communauté","footer.join":"Rejoindre IFC","footer.archives":"Archives","footer.linkedin":"[LinkedIn]","footer.instagram":"[Instagram]","footer.facebook":"[Facebook]",
-    "footer.contact":"Contact","footer.email":"[Email IFC]","footer.phone":"[Téléphone IFC]","footer.address":"[Adresse / LISCAE]",
-    "footer.tag":"Fait par des étudiants, pour des étudiants.",
-  },
-  en: {
-    "brand.name":"IFC","brand.full":"LISCAE Fintech Club",
-    "nav.home":"Home","nav.about":"About","nav.values":"Values","nav.team":"Team","nav.events":"Events","nav.partners":"Partners","nav.join":"Join IFC",
-    "hero.eyebrow":"LISCAE FINTECH CLUB",
-    "hero.title":"The LISCAE <span class=\"accent\">Fintech</span> Club",
-    "hero.subtitle":"A student community at the crossroads of finance, technology and innovation. Let's learn, collaborate and build the financial solutions of tomorrow.",
-    "hero.cta1":"Join IFC →","hero.cta2":"Discover IFC →","hero.cta3":"See our events",
-    "about.eyebrow":"ABOUT","about.title":"A community shaping the finance of tomorrow",
-    "about.desc":"LISCAE Fintech Club is a student community dedicated to exploring the intersection of finance, technology and innovation. IFC offers a space to learn, share knowledge, build projects and connect students passionate about the transformation of the financial sector.",
-    "about.stat1":"Members","about.stat2":"Founding year","about.stat3":"Events","about.stat4":"Projects",
-    "values.eyebrow":"OUR PRINCIPLES","values.title":"Our values","values.subtitle":"The principles that guide our community and our vision of fintech.",
-    "value.innovation.title":"Innovation","value.innovation.desc":"Exploring new ideas and imagining the financial solutions of tomorrow.",
-    "value.apprentissage.title":"Learning","value.apprentissage.desc":"Continuously developing our skills in finance, technology and innovation.",
-    "value.collaboration.title":"Collaboration","value.collaboration.desc":"Creating an environment where students learn, build and grow together.",
-    "value.excellence.title":"Excellence","value.excellence.desc":"Aiming for quality, curiosity and impact in everything we do.",
-    "team.eyebrow":"THE TEAM","team.title":"Our team","team.subtitle":"The students helping grow the IFC community.",
-    "role.president":"President","role.vp":"Vice President","role.finance":"Finance Lead","role.comms":"Communications Lead","role.events":"Events Lead","role.programs":"Programs Lead",
-    "team.name":"[Member name]","team.linkedin":"LinkedIn",
-    "events.eyebrow":"EDUCATION & COMMUNITY","events.title":"Our events","events.subtitle":"Discover the activities, meetups, workshops and initiatives organized by IFC around fintech, technology and innovation.",
-    "event.tag":"IFC EVENT","event.title":"[Event title]","event.desc":"[Short event description]","event.cta":"View details →",
-    "event.date":"[Date]","event.location":"[Location]",
-    "modal.date":"Date","modal.location":"Location","modal.organizers":"Organizers","modal.participants":"Participants","modal.cta":"Join our community →",
-    "modal.participants.value":"[Participants]",
-    "impact.eyebrow":"BY THE NUMBERS","impact.title":"Our impact","impact.subtitle":"A community that learns, builds and shares.",
-    "impact.stat1":"Average attendees","impact.stat2":"Projects","impact.stat3":"Training hours","impact.stat4":"Events","impact.archive":"View archives",
-    "join.title":"Join IFC","join.desc":"Whether you're passionate about finance, technology, innovation, or simply curious to explore fintech, IFC is a space to learn, meet, collaborate and build.",
-    "join.cta1":"Join our community →","join.cta2":"Discover our events →",
-    "partners.eyebrow":"COLLABORATIONS","partners.title":"Our partners","partners.desc":"We're progressively building a network of partners who share our interest in financial technology, innovation and student development.",
-    "partner.placeholder":"[ PARTNER ]",
-    "footer.desc":"A student community dedicated to finance, technology and innovation.",
-    "footer.nav":"Navigation","footer.community":"Community","footer.join":"Join IFC","footer.archives":"Archives","footer.linkedin":"[LinkedIn]","footer.instagram":"[Instagram]","footer.facebook":"[Facebook]",
-    "footer.contact":"Contact","footer.email":"[IFC email]","footer.phone":"[IFC phone]","footer.address":"[Address / LISCAE]",
-    "footer.tag":"Built by students, for students.",
-  },
-  ar: {
-    "brand.name":"آي إف سي","brand.full":"نادي ليسكاي للتكنولوجيا المالية",
-    "nav.home":"الرئيسية","nav.about":"من نحن","nav.values":"قيمنا","nav.team":"الفريق","nav.events":"الفعاليات","nav.partners":"الشركاء","nav.join":"انضم إلى IFC",
-    "hero.eyebrow":"نادي ليسكاي للتكنولوجيا المالية",
-    "hero.title":"نادي <span class=\"accent\">فينتك</span> في ليسكاي",
-    "hero.subtitle":"مجتمع طلابي في ملتقى المالية والتكنولوجيا والابتكار. لنتعلم ونتعاون ونبني معًا الحلول المالية للمستقبل.",
-    "hero.cta1":"انضم إلى IFC ←","hero.cta2":"اكتشف IFC ←","hero.cta3":"شاهد فعالياتنا",
-    "about.eyebrow":"من نحن","about.title":"مجتمع يتطلع إلى مالية المستقبل",
-    "about.desc":"نادي ليسكاي للتكنولوجيا المالية هو مجتمع طلابي مخصص لاستكشاف التقاطع بين المالية والتكنولوجيا والابتكار. يوفر IFC مساحة للتعلم وتبادل المعرفة وتطوير المشاريع وربط الطلاب المهتمين بتحولات القطاع المالي.",
-    "about.stat1":"الأعضاء","about.stat2":"سنة التأسيس","about.stat3":"الفعاليات","about.stat4":"المشاريع",
-    "values.eyebrow":"مبادئنا","values.title":"قيمنا","values.subtitle":"المبادئ التي توجه مجتمعنا ورؤيتنا للتكنولوجيا المالية.",
-    "value.innovation.title":"الابتكار","value.innovation.desc":"استكشاف أفكار جديدة وتخيل الحلول المالية للمستقبل.",
-    "value.apprentissage.title":"التعلم","value.apprentissage.desc":"تطوير مهاراتنا باستمرار في المالية والتكنولوجيا والابتكار.",
-    "value.collaboration.title":"التعاون","value.collaboration.desc":"خلق بيئة يتعلم فيها الطلاب ويبنون ويتقدمون معًا.",
-    "value.excellence.title":"التميز","value.excellence.desc":"السعي إلى الجودة والفضول والأثر في كل ما نقوم به.",
-    "team.eyebrow":"الفريق","team.title":"فريقنا","team.subtitle":"الطلاب الذين يساهمون في تنمية مجتمع IFC.",
-    "role.president":"الرئيس(ة)","role.vp":"نائب الرئيس(ة)","role.finance":"مسؤول المالية","role.comms":"مسؤول التواصل","role.events":"مسؤول الفعاليات","role.programs":"مسؤول البرامج",
-    "team.name":"[اسم العضو]","team.linkedin":"لينكدإن",
-    "events.eyebrow":"التعليم والمجتمع","events.title":"فعالياتنا","events.subtitle":"اكتشف الأنشطة واللقاءات وورش العمل والمبادرات التي ينظمها IFC حول التكنولوجيا المالية والتكنولوجيا والابتكار.",
-    "event.tag":"فعالية IFC","event.title":"[عنوان الفعالية]","event.desc":"[وصف مختصر للفعالية]","event.cta":"عرض التفاصيل ←",
-    "event.date":"[التاريخ]","event.location":"[المكان]",
-    "modal.date":"التاريخ","modal.location":"المكان","modal.organizers":"المنظمون","modal.participants":"المشاركون","modal.cta":"انضم إلى مجتمعنا ←",
-    "modal.participants.value":"[المشاركون]",
-    "impact.eyebrow":"بالأرقام","impact.title":"أثرنا","impact.subtitle":"مجتمع يتعلم ويبني ويشارك.",
-    "impact.stat1":"متوسط المشاركين","impact.stat2":"المشاريع","impact.stat3":"ساعات التكوين","impact.stat4":"الفعاليات","impact.archive":"عرض الأرشيف",
-    "join.title":"انضم إلى IFC","join.desc":"سواء كنت شغوفًا بالمالية أو التكنولوجيا أو الابتكار، أو ببساطة فضوليًا لاستكشاف التكنولوجيا المالية، فإن IFC مساحة للتعلم والتواصل والتعاون والبناء.",
-    "join.cta1":"انضم إلى مجتمعنا ←","join.cta2":"اكتشف فعالياتنا ←",
-    "partners.eyebrow":"الشراكات","partners.title":"شركاؤنا","partners.desc":"سنبني تدريجيًا شبكة من الشركاء الذين يشاركوننا الاهتمام بالتكنولوجيا المالية والابتكار وتطوير الطلاب.",
-    "partner.placeholder":"[ شريك ]",
-    "footer.desc":"مجتمع طلابي مخصص للمالية والتكنولوجيا والابتكار.",
-    "footer.nav":"روابط","footer.community":"المجتمع","footer.join":"انضم إلى IFC","footer.archives":"الأرشيف","footer.linkedin":"[لينكدإن]","footer.instagram":"[إنستغرام]","footer.facebook":"[فيسبوك]",
-    "footer.contact":"تواصل","footer.email":"[البريد الإلكتروني]","footer.phone":"[الهاتف]","footer.address":"[العنوان / ليسكاي]",
-    "footer.tag":"صُنع بواسطة الطلاب، من أجل الطلاب.",
-  },
-};
-const LANG_META = {fr:{flag:"🇫🇷",label:"Français"}, en:{flag:"🇬🇧",label:"English"}, ar:{flag:"🇸🇦",label:"العربية"}};
-
-/* ============================================================
-   RENDER DYNAMIC SECTIONS
-   ============================================================ */
-function renderValues(lang){
-  const keys = ["innovation","apprentissage","collaboration","excellence"];
-  document.getElementById("values-grid").innerHTML = keys.map(k => `
-    <div class="value-card reveal">
-      <div class="value-icon">${VALUE_ICONS[k]}</div>
-      <h3>${I18N[lang][`value.${k}.title`]}</h3>
-      <p>${I18N[lang][`value.${k}.desc`]}</p>
-    </div>`).join("");
-}
-
-function renderTeam(lang){
-  document.getElementById("team-grid").innerHTML = TEAM.map(m => `
-    <div class="team-card reveal">
-      <div class="team-photo"><span class="ph-initial">IFC</span></div>
-      <div class="team-info">
-        <h3>${I18N[lang]["team.name"]}</h3>
-        <div class="role">${I18N[lang][`role.${m.role}`]}</div>
-        <a class="li-link" href="${m.linkedin}">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4 0 4.75 2.5 4.75 5.9V21h-4v-5.6c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.45-2.2 3v5.7H9z"/></svg>
-          ${I18N[lang]["team.linkedin"]}
+  <!-- ===== IMPACT ===== -->
+  <section class="section section-dark" id="impact">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label" style="color: var(--color-accent);" data-i18n="impact_label">Notre impact</div>
+        <h2 class="section-title" data-i18n="impact_title">Notre impact</h2>
+        <p class="section-desc" data-i18n="impact_subtitle">Une communauté qui apprend, construit et partage.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-item reveal stagger-1">
+          <div class="impact-value">[XX]</div>
+          <div class="impact-label" data-i18n="impact_participants">Participants moyens</div>
+        </div>
+        <div class="impact-item reveal stagger-2">
+          <div class="impact-value">[XX]</div>
+          <div class="impact-label" data-i18n="impact_projects">Projets</div>
+        </div>
+        <div class="impact-item reveal stagger-3">
+          <div class="impact-value">[XX]</div>
+          <div class="impact-label" data-i18n="impact_hours">Heures de formation</div>
+        </div>
+        <div class="impact-item reveal stagger-4">
+          <div class="impact-value">[XX]</div>
+          <div class="impact-label" data-i18n="impact_events">Événements</div>
+        </div>
+      </div>
+      <div class="impact-cta reveal">
+        <a href="#evenements" class="hero-link" style="color: var(--color-accent);">
+          <span data-i18n="impact_archive">Voir les archives</span>
+          <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
         </a>
       </div>
-    </div>`).join("");
-}
+    </div>
+  </section>
 
-function eventGridSVG(){
-  return `<svg class="grid-overlay" viewBox="0 0 400 250" preserveAspectRatio="none"><defs><pattern id="egrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/></pattern></defs><rect width="400" height="250" fill="url(#egrid)"/><circle cx="330" cy="50" r="2" fill="var(--yellow)" opacity=".7"/><circle cx="80" cy="190" r="2" fill="var(--yellow)" opacity=".5"/></svg>`;
-}
-
-function renderEvents(lang){
-  document.getElementById("events-grid").innerHTML = EVENTS.map((e,i) => `
-    <div class="event-card reveal" data-index="${i}">
-      <div class="event-media">${eventGridSVG()}<span class="event-cat">${I18N[lang]["event.tag"]}</span></div>
-      <div class="event-body">
-        <h3>${I18N[lang]["event.title"]}</h3>
-        <p>${I18N[lang]["event.desc"]}</p>
-        <div class="event-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>${I18N[lang]["event.date"]}</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>${I18N[lang]["event.location"]}</span>
+  <!-- ===== JOIN ===== -->
+  <section class="section section-dark" id="rejoindre">
+    <div class="container">
+      <div class="join-content reveal">
+        <h2 class="join-title" data-i18n="join_title">Rejoins l'IFC</h2>
+        <p class="join-desc" data-i18n="join_desc">Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.</p>
+        <div class="join-cta">
+          <a href="#join" class="btn-primary" data-i18n="join_cta_primary">Rejoindre notre communauté</a>
+          <a href="#evenements" class="btn-secondary" data-i18n="join_cta_secondary">Découvrir nos événements</a>
         </div>
-        <span class="btn-ghost">${I18N[lang]["event.cta"]}</span>
       </div>
-    </div>`).join("");
+    </div>
+  </section>
 
-  document.querySelectorAll(".event-card").forEach(card => {
-    card.addEventListener("click", () => openModal(parseInt(card.dataset.index)));
-  });
-  observeReveals();
-}
+  <!-- ===== PARTNERS ===== -->
+  <section class="section" id="partenaires">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-label" data-i18n="partners_label">Collaborations</div>
+        <h2 class="section-title" data-i18n="partners_title">Nos partenaires</h2>
+        <p class="section-desc" data-i18n="partners_subtitle">Nous construirons progressivement un réseau de partenaires partageant notre intérêt pour la technologie financière, l'innovation et le développement des étudiants.</p>
+      </div>
+      <div class="partners-grid">
+        <div class="partner-card reveal stagger-1"><span class="partner-placeholder">[PARTENAIRE]</span></div>
+        <div class="partner-card reveal stagger-2"><span class="partner-placeholder">[ORGANISATION]</span></div>
+        <div class="partner-card reveal stagger-3"><span class="partner-placeholder">[PARTENAIRE]</span></div>
+        <div class="partner-card reveal stagger-4"><span class="partner-placeholder">[ORGANISATION]</span></div>
+        <div class="partner-card reveal stagger-1"><span class="partner-placeholder">[PARTENAIRE]</span></div>
+        <div class="partner-card reveal stagger-2"><span class="partner-placeholder">[ORGANISATION]</span></div>
+        <div class="partner-card reveal stagger-3"><span class="partner-placeholder">[PARTENAIRE]</span></div>
+        <div class="partner-card reveal stagger-4"><span class="partner-placeholder">[ORGANISATION]</span></div>
+      </div>
+    </div>
+  </section>
 
-function renderPartners(lang){
-  document.getElementById("partners-row").innerHTML = PARTNERS.map(() =>
-    `<div class="partner-box">${I18N[lang]["partner.placeholder"]}</div>`).join("");
-}
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">IFC</div>
+            <div class="logo-text">
+              <span style="color: #A7B0C0;">LISCAE Fintech Club</span>
+              <span style="color: #F8FAFC;">IFC</span>
+            </div>
+          </a>
+          <p class="footer-desc" data-i18n="footer_desc">Une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.</p>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_nav_title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#accueil" data-i18n="nav_home">Accueil</a></li>
+            <li><a href="#apropos" data-i18n="nav_about">À propos</a></li>
+            <li><a href="#valeurs" data-i18n="nav_values">Valeurs</a></li>
+            <li><a href="#equipe" data-i18n="nav_team">Équipe</a></li>
+            <li><a href="#evenements" data-i18n="nav_events">Événements</a></li>
+            <li><a href="#partenaires" data-i18n="nav_partners">Partenaires</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_community_title">Communauté</h4>
+          <ul class="footer-links">
+            <li><a href="#rejoindre" data-i18n="nav_join">Rejoindre IFC</a></li>
+            <li><a href="#evenements" data-i18n="nav_events">Événements</a></li>
+            <li><a href="#" data-i18n="footer_archive">Archives</a></li>
+            <li><a href="#" data-i18n="footer_linkedin">LinkedIn</a></li>
+            <li><a href="#" data-i18n="footer_instagram">Instagram</a></li>
+            <li><a href="#" data-i18n="footer_facebook">Facebook</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_contact_title">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="#">[Email IFC]</a></li>
+            <li><a href="#">[Téléphone IFC]</a></li>
+            <li><a href="#">[Adresse / LISCAE]</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 IFC — LISCAE Fintech Club</span>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width:16px;height:16px;"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:16px;height:16px;"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-function openModal(i){
-  const lang = currentLang;
-  document.getElementById("modal-title").textContent = I18N[lang]["event.title"];
-  document.getElementById("modal-desc").textContent = I18N[lang]["event.desc"];
-  document.getElementById("modal-date").textContent = I18N[lang]["event.date"];
-  document.getElementById("modal-location").textContent = I18N[lang]["event.location"];
-  document.getElementById("modal-organizers").textContent = "IFC";
-  document.getElementById("modal-participants").textContent = I18N[lang]["modal.participants.value"];
-  document.getElementById("modal-backdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-function closeModal(){
-  document.getElementById("modal-backdrop").classList.remove("open");
-  document.body.style.overflow = "";
-}
-document.getElementById("modal-close").addEventListener("click", closeModal);
-document.getElementById("modal-backdrop").addEventListener("click", e => { if(e.target.id === "modal-backdrop") closeModal(); });
-document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+  <!-- ===== EVENT MODAL ===== -->
+  <div class="modal-overlay" id="eventModal" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <img src="/assets/events/event-01.jpg" alt="" id="modalImage" onerror="this.style.display='none'">
+        <button class="modal-close" onclick="closeModal()" aria-label="Fermer">
+          <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-category" id="modalCategory">Atelier</span>
+        <h3 class="modal-title" id="modalTitle">[Titre de l'événement]</h3>
+        <p class="modal-desc" id="modalDesc">[Description complète de l'événement]</p>
+        <div class="modal-meta">
+          <div class="modal-meta-item"><i data-lucide="calendar" style="width:18px;height:18px;"></i><span id="modalDate">[Date]</span></div>
+          <div class="modal-meta-item"><i data-lucide="map-pin" style="width:18px;height:18px;"></i><span id="modalLocation">[Lieu]</span></div>
+          <div class="modal-meta-item"><i data-lucide="users" style="width:18px;height:18px;"></i><span id="modalParticipants">[Participants]</span></div>
+          <div class="modal-meta-item"><i data-lucide="user" style="width:18px;height:18px;"></i><span id="modalOrganizer">[Organisateur]</span></div>
+        </div>
+        <a href="#" class="btn-primary" style="width:100%;justify-content:center;" data-i18n="event_register">S'inscrire</a>
+      </div>
+    </div>
+  </div>
 
-/* ============================================================
-   LANGUAGE SWITCHING
-   ============================================================ */
-let currentLang = localStorage.getItem("ifc-lang") || "fr";
+  <script>
+    // ===== TRANSLATIONS =====
+    const translations = {
+      fr: {
+        logo_subtitle: "LISCAE Fintech Club",
+        nav_home: "Accueil",
+        nav_about: "À propos",
+        nav_values: "Valeurs",
+        nav_team: "Équipe",
+        nav_events: "Événements",
+        nav_partners: "Partenaires",
+        nav_join: "Rejoindre l'IFC",
+        hero_eyebrow: "LISCAE Fintech Club",
+        hero_title: "Le <span class='highlight'>Fintech Club</span> de LISCAE",
+        hero_subtitle: "Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation. Apprenons, collaborons et construisons les solutions financières de demain.",
+        hero_cta_primary: "Rejoindre l'IFC",
+        hero_cta_secondary: "Découvrir IFC",
+        hero_cta_tertiary: "Voir nos événements",
+        about_label: "À propos",
+        about_title: "Une communauté tournée vers la finance de demain",
+        about_desc: "LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.",
+        stat_members: "Membres",
+        stat_year: "Année de création",
+        stat_events: "Événements",
+        stat_projects: "Projets",
+        values_label: "Nos valeurs",
+        values_title: "Nos valeurs",
+        values_subtitle: "Les principes qui guident notre communauté et notre vision de la fintech.",
+        value_innovation_title: "Innovation",
+        value_innovation_desc: "Explorer de nouvelles idées et imaginer les solutions financières de demain.",
+        value_learning_title: "Apprentissage",
+        value_learning_desc: "Développer continuellement nos compétences en finance, technologie et innovation.",
+        value_collab_title: "Collaboration",
+        value_collab_desc: "Créer un environnement où les étudiants apprennent, construisent et progressent ensemble.",
+        value_excellence_title: "Excellence",
+        value_excellence_desc: "Viser la qualité, la curiosité et l'impact dans tout ce que nous entreprenons.",
+        team_label: "Notre équipe",
+        team_title: "Notre équipe",
+        team_subtitle: "Les étudiants qui contribuent à faire grandir la communauté IFC.",
+        role_president: "Président(e)",
+        role_vp: "Vice-président(e)",
+        role_finance: "Responsable Finance",
+        role_comm: "Responsable Communication",
+        role_events: "Responsable Événements",
+        role_programs: "Responsable Programmes",
+        events_label: "Éducation & Communauté",
+        events_title: "Nos événements",
+        events_subtitle: "Découvrez les activités, rencontres, ateliers et initiatives organisés par IFC autour de la fintech, de la technologie et de l'innovation.",
+        event_cat_workshop: "Atelier",
+        event_cat_conference: "Conférence",
+        event_cat_hackathon: "Hackathon",
+        event_details: "Voir les détails",
+        event_register: "S'inscrire",
+        impact_label: "Notre impact",
+        impact_title: "Notre impact",
+        impact_subtitle: "Une communauté qui apprend, construit et partage.",
+        impact_participants: "Participants moyens",
+        impact_projects: "Projets",
+        impact_hours: "Heures de formation",
+        impact_events: "Événements",
+        impact_archive: "Voir les archives",
+        join_title: "Rejoins l'IFC",
+        join_desc: "Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.",
+        join_cta_primary: "Rejoindre notre communauté",
+        join_cta_secondary: "Découvrir nos événements",
+        partners_label: "Collaborations",
+        partners_title: "Nos partenaires",
+        partners_subtitle: "Nous construirons progressivement un réseau de partenaires partageant notre intérêt pour la technologie financière, l'innovation et le développement des étudiants.",
+        footer_desc: "Une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.",
+        footer_nav_title: "Navigation",
+        footer_community_title: "Communauté",
+        footer_contact_title: "Contact",
+        footer_archive: "Archives",
+        footer_linkedin: "LinkedIn",
+        footer_instagram: "Instagram",
+        footer_facebook: "Facebook"
+      },
+      en: {
+        logo_subtitle: "LISCAE Fintech Club",
+        nav_home: "Home",
+        nav_about: "About",
+        nav_values: "Values",
+        nav_team: "Team",
+        nav_events: "Events",
+        nav_partners: "Partners",
+        nav_join: "Join IFC",
+        hero_eyebrow: "LISCAE Fintech Club",
+        hero_title: "The <span class='highlight'>Fintech Club</span> of LISCAE",
+        hero_subtitle: "A student community at the intersection of finance, technology and innovation. Let's learn, collaborate and build the financial solutions of tomorrow.",
+        hero_cta_primary: "Join IFC",
+        hero_cta_secondary: "Discover IFC",
+        hero_cta_tertiary: "See our events",
+        about_label: "About",
+        about_title: "A community focused on the finance of tomorrow",
+        about_desc: "LISCAE Fintech Club is a student community dedicated to exploring the intersection of finance, technology and innovation. IFC provides a space to learn, share knowledge, develop projects and create connections between students passionate about the transformations in the financial sector.",
+        stat_members: "Members",
+        stat_year: "Year founded",
+        stat_events: "Events",
+        stat_projects: "Projects",
+        values_label: "Our values",
+        values_title: "Our values",
+        values_subtitle: "The principles that guide our community and our vision of fintech.",
+        value_innovation_title: "Innovation",
+        value_innovation_desc: "Explore new ideas and imagine the financial solutions of tomorrow.",
+        value_learning_title: "Learning",
+        value_learning_desc: "Continuously develop our skills in finance, technology and innovation.",
+        value_collab_title: "Collaboration",
+        value_collab_desc: "Create an environment where students learn, build and grow together.",
+        value_excellence_title: "Excellence",
+        value_excellence_desc: "Aim for quality, curiosity and impact in everything we undertake.",
+        team_label: "Our team",
+        team_title: "Our team",
+        team_subtitle: "The students who contribute to growing the IFC community.",
+        role_president: "President",
+        role_vp: "Vice President",
+        role_finance: "Finance Lead",
+        role_comm: "Communications Lead",
+        role_events: "Events Lead",
+        role_programs: "Programs Lead",
+        events_label: "Education & Community",
+        events_title: "Our events",
+        events_subtitle: "Discover the activities, meetings, workshops and initiatives organized by IFC around fintech, technology and innovation.",
+        event_cat_workshop: "Workshop",
+        event_cat_conference: "Conference",
+        event_cat_hackathon: "Hackathon",
+        event_details: "View details",
+        event_register: "Register",
+        impact_label: "Our impact",
+        impact_title: "Our impact",
+        impact_subtitle: "A community that learns, builds and shares.",
+        impact_participants: "Average participants",
+        impact_projects: "Projects",
+        impact_hours: "Training hours",
+        impact_events: "Events",
+        impact_archive: "View archives",
+        join_title: "Join IFC",
+        join_desc: "Whether you are passionate about finance, technology, innovation or simply curious to explore fintech, IFC is a space to learn, meet, collaborate and build.",
+        join_cta_primary: "Join our community",
+        join_cta_secondary: "Discover our events",
+        partners_label: "Collaborations",
+        partners_title: "Our partners",
+        partners_subtitle: "We will gradually build a network of partners sharing our interest in financial technology, innovation and student development.",
+        footer_desc: "A student community dedicated to finance, technology and innovation.",
+        footer_nav_title: "Navigation",
+        footer_community_title: "Community",
+        footer_contact_title: "Contact",
+        footer_archive: "Archives",
+        footer_linkedin: "LinkedIn",
+        footer_instagram: "Instagram",
+        footer_facebook: "Facebook"
+      },
+      ar: {
+        logo_subtitle: "نادي ليسكاي للتكنولوجيا المالية",
+        nav_home: "الرئيسية",
+        nav_about: "من نحن",
+        nav_values: "قيمنا",
+        nav_team: "الفريق",
+        nav_events: "الفعاليات",
+        nav_partners: "الشركاء",
+        nav_join: "انضم إلى IFC",
+        hero_eyebrow: "نادي ليسكاي للتكنولوجيا المالية",
+        hero_title: "<span class='highlight'>نادي التكنولوجيا المالية</span> في ليسكاي",
+        hero_subtitle: "مجتمع طلابي عند تقاطع المال والتكنولوجيا والابتكار. لنتعلم ونتعاون ونبني حلول المال الغد.",
+        hero_cta_primary: "انضم إلى IFC",
+        hero_cta_secondary: "اكتشف IFC",
+        hero_cta_tertiary: "شاهد فعالياتنا",
+        about_label: "من نحن",
+        about_title: "مجتمع متطلع إلى مستقبل المال",
+        about_desc: "نادي ليسكاي للتكنولوجيا المالية هو مجتمع طلابي مكرس لاستكشاف تقاطع المال والتكنولوجيا والابتكار. يوفر IFC مساحة للتعلم ومشاركة المعرفة وتطوير المشاريع وإنشاء روابط بين الطلاب المتحمسين لتحولات القطاع المالي.",
+        stat_members: "الأعضاء",
+        stat_year: "سنة التأسيس",
+        stat_events: "الفعاليات",
+        stat_projects: "المشاريع",
+        values_label: "قيمنا",
+        values_title: "قيمنا",
+        values_subtitle: "المبادئ التي توجه مجتمعنا ورؤيتنا للتكنولوجيا المالية.",
+        value_innovation_title: "الابتكار",
+        value_innovation_desc: "استكشاف أفكار جديدة وتخيل حلول المال الغد.",
+        value_learning_title: "التعلم",
+        value_learning_desc: "تطوير مهاراتنا باستمرار في المال والتكنولوجيا والابتكار.",
+        value_collab_title: "التعاون",
+        value_collab_desc: "خلق بيئة يتعلم فيها الطلاب ويبنون ويتقدمون معًا.",
+        value_excellence_title: "التميز",
+        value_excellence_desc: "السعي للجودة والفضول والتأثير في كل ما نقوم به.",
+        team_label: "فريقنا",
+        team_title: "فريقنا",
+        team_subtitle: "الطلاب الذين يساهمون في نمو مجتمع IFC.",
+        role_president: "الرئيس/ة",
+        role_vp: "نائب الرئيس/ة",
+        role_finance: "مسؤول المالية",
+        role_comm: "مسؤول الاتصال",
+        role_events: "مسؤول الفعاليات",
+        role_programs: "مسؤول البرامج",
+        events_label: "التعليم والمجتمع",
+        events_title: "فعالياتنا",
+        events_subtitle: "اكتشف الأنشطة واللقاءات وورش العمل والمبادرات التي ينظمها IFC حول التكنولوجيا المالية والتقنية والابتكار.",
+        event_cat_workshop: "ورشة عمل",
+        event_cat_conference: "مؤتمر",
+        event_cat_hackathon: "هاكاثون",
+        event_details: "عرض التفاصيل",
+        event_register: "التسجيل",
+        impact_label: "تأثيرنا",
+        impact_title: "تأثيرنا",
+        impact_subtitle: "مجتمع يتعلم ويبني ويشارك.",
+        impact_participants: "المشاركون",
+        impact_projects: "المشاريع",
+        impact_hours: "ساعات التدريب",
+        impact_events: "الفعاليات",
+        impact_archive: "عرض الأرشيف",
+        join_title: "انضم إلى IFC",
+        join_desc: "سواء كنت متحمسًا للمال أو التكنولوجيا أو الابتكار أو مجرد فضولي لاستكشاف التكنولوجيا المالية، فإن IFC هو مساحة للتعلم واللقاء والتعاون والبناء.",
+        join_cta_primary: "انضم إلى مجتمعنا",
+        join_cta_secondary: "اكتشف فعالياتنا",
+        partners_label: "الشراكات",
+        partners_title: "شركاؤنا",
+        partners_subtitle: "سنبني تدريجيًا شبكة من الشركاء يشاركون اهتمامنا بالتكنولوجيا المالية والابتكار وتطوير الطلاب.",
+        footer_desc: "مجتمع طلابي مكرس للمال والتكنولوجيا والابتكار.",
+        footer_nav_title: "التنقل",
+        footer_community_title: "المجتمع",
+        footer_contact_title: "اتصل بنا",
+        footer_archive: "الأرشيف",
+        footer_linkedin: "لينكدإن",
+        footer_instagram: "إنستغرام",
+        footer_facebook: "فيسبوك"
+      }
+    };
 
-function applyLang(lang){
-  currentLang = lang;
-  localStorage.setItem("ifc-lang", lang);
-  document.documentElement.lang = lang;
-  const dir = lang === "ar" ? "rtl" : "ltr";
-  document.documentElement.dir = dir;
+    const eventData = [
+      { category: "event_cat_workshop", title: "[Titre de l'événement]", desc: "[Description complète de l'événement]", date: "[Date]", location: "[Lieu]", participants: "[Participants]", organizer: "[Organisateur]", image: "/assets/events/event-01.jpg" },
+      { category: "event_cat_conference", title: "[Titre de l'événement]", desc: "[Description complète de l'événement]", date: "[Date]", location: "[Lieu]", participants: "[Participants]", organizer: "[Organisateur]", image: "/assets/events/event-02.jpg" },
+      { category: "event_cat_hackathon", title: "[Titre de l'événement]", desc: "[Description complète de l'événement]", date: "[Date]", location: "[Lieu]", participants: "[Participants]", organizer: "[Organisateur]", image: "/assets/events/event-03.jpg" }
+    ];
 
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
-  });
+    let currentLang = localStorage.getItem('ifc-lang') || 'fr';
+    let currentTheme = localStorage.getItem('ifc-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-  document.getElementById("lang-flag").textContent = LANG_META[lang].flag;
-  document.getElementById("lang-label").textContent = LANG_META[lang].label;
-  document.querySelectorAll(".lang-menu button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-
-  renderValues(lang);
-  renderTeam(lang);
-  renderEvents(lang);
-  renderPartners(lang);
-  observeReveals();
-}
-
-document.querySelectorAll(".lang-menu button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    applyLang(btn.dataset.lang);
-    document.getElementById("lang-wrap").classList.remove("open");
-  });
-});
-const langWrap = document.getElementById("lang-wrap");
-document.getElementById("lang-btn").addEventListener("click", () => langWrap.classList.toggle("open"));
-document.addEventListener("click", e => { if(!langWrap.contains(e.target)) langWrap.classList.remove("open"); });
-
-/* ============================================================
-   THEME (LIGHT / DARK)
-   ============================================================ */
-function applyTheme(theme){
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("ifc-theme", theme);
-  document.getElementById("theme-icon-sun").style.display = theme === "dark" ? "block" : "none";
-  document.getElementById("theme-icon-moon").style.display = theme === "dark" ? "none" : "block";
-}
-const savedTheme = localStorage.getItem("ifc-theme");
-const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-applyTheme(savedTheme || (systemDark ? "dark" : "light"));
-document.getElementById("theme-toggle").addEventListener("click", () => {
-  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  applyTheme(next);
-});
-
-/* ============================================================
-   MOBILE DRAWER
-   ============================================================ */
-const drawer = document.getElementById("drawer");
-const drawerBackdrop = document.getElementById("drawer-backdrop");
-function openDrawer(){ drawer.classList.add("open"); drawerBackdrop.classList.add("open"); document.body.style.overflow="hidden"; }
-function closeDrawer(){ drawer.classList.remove("open"); drawerBackdrop.classList.remove("open"); document.body.style.overflow=""; }
-document.getElementById("hamburger-btn").addEventListener("click", openDrawer);
-document.getElementById("drawer-close").addEventListener("click", closeDrawer);
-drawerBackdrop.addEventListener("click", closeDrawer);
-drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
-
-/* ============================================================
-   HEADER SCROLL STATE + ACTIVE NAV + JOIN BUTTON VISIBILITY
-   ============================================================ */
-const header = document.getElementById("site-header");
-const navJoinBtn = document.getElementById("nav-join-btn");
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 8);
-  navJoinBtn.style.display = window.scrollY > 400 ? "inline-flex" : "none";
-}, {passive:true});
-
-const sections = ["accueil","about","valeurs","equipe","evenements","partenaires"];
-const navAnchors = document.querySelectorAll("#nav-links a");
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      navAnchors.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#"+entry.target.id));
+    // ===== THEME =====
+    function setTheme(theme) {
+      currentTheme = theme;
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('ifc-theme', theme);
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
+        lucide.createIcons();
+      }
     }
-  });
-}, {rootMargin:"-40% 0px -50% 0px"});
-sections.forEach(id => { const el = document.getElementById(id); if(el) navObserver.observe(el); });
 
-/* ============================================================
-   SCROLL REVEAL
-   ============================================================ */
-function observeReveals(){
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); } });
-  }, {threshold:0.12});
-  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
-}
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
 
-/* ============================================================
-   INIT
-   ============================================================ */
-applyLang(currentLang);
-observeReveals();
-</script>
+    setTheme(currentTheme);
+
+    // ===== LANGUAGE =====
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('ifc-lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          if (key === 'hero_title') {
+            el.innerHTML = t[key];
+          } else {
+            el.textContent = t[key];
+          }
+        }
+      });
+
+      document.getElementById('currentLangFlag').textContent = lang === 'fr' ? '🇫🇷' : lang === 'en' ? '🇬🇧' : '🇸🇦';
+      document.getElementById('currentLangLabel').textContent = lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'العربية';
+
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+
+      lucide.createIcons();
+    }
+
+    document.getElementById('langToggle').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('langDropdown').classList.toggle('open');
+    });
+
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setLanguage(opt.dataset.lang);
+        document.getElementById('langDropdown').classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.getElementById('langDropdown').classList.remove('open');
+    });
+
+    // ===== MOBILE MENU =====
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.setAttribute('data-lucide', mobileNav.classList.contains('open') ? 'x' : 'menu');
+      lucide.createIcons();
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      });
+    });
+
+    // ===== SMOOTH SCROLL & ACTIVE NAV =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== MODAL =====
+    function openModal(index) {
+      const event = eventData[index];
+      const t = translations[currentLang];
+      document.getElementById('modalCategory').textContent = t[event.category] || event.category;
+      document.getElementById('modalTitle').textContent = event.title;
+      document.getElementById('modalDesc').textContent = event.desc;
+      document.getElementById('modalDate').textContent = event.date;
+      document.getElementById('modalLocation').textContent = event.location;
+      document.getElementById('modalParticipants').textContent = event.participants;
+      document.getElementById('modalOrganizer').textContent = event.organizer;
+      const img = document.getElementById('modalImage');
+      img.src = event.image;
+      img.style.display = '';
+      document.getElementById('eventModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== e.currentTarget) return;
+      document.getElementById('eventModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ===== INIT =====
+    setLanguage(currentLang);
+    lucide.createIcons();
+  </script>
 </body>
 </html>
