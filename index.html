@@ -2,22 +2,7 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LISCAE Fintech Club — IFC</title>
-  <meta name="description" content="LISCAE Fintech Club (IFC), une communauté étudiante dédiée à la finance, à la technologie et à l'innovation.">
-  <meta property="og:title" content="LISCAE Fintech Club — IFC">
-  <meta property="og:description" content="Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/og-image.jpg">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563EB'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='48' font-weight='700' fill='white' text-anchor='middle'%3EIFC%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>\
-   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  
-  <!-- Primary SEO -->
   <title>LISCAE Fintech Club — IFC | Innovation & Technologie Financière</title>
   <meta name="description" content="LISCAE Fintech Club (IFC) — Une communauté étudiante dédiée à la finance, à la technologie et à l'innovation. Rejoignez-nous pour construire les solutions financières de demain.">
   <meta name="keywords" content="LISCAE, Fintech Club, IFC, finance, technologie, innovation, communauté étudiante, Mauritanie, fintech, club financier">
@@ -182,13 +167,13 @@
     .brand-link {
       display: flex;
       align-items: center;
-      gap: 12px; /* tasteful gap between logos */
+      gap: 12px;
       flex-shrink: 0;
       text-decoration: none;
     }
     .brand-logo {
       display: block;
-      height: 40px; /* base height, will scale responsively */
+      height: 40px;
       width: auto;
       object-fit: contain;
       transition: opacity 0.2s ease;
@@ -196,12 +181,11 @@
     .brand-logo:hover {
       opacity: 0.85;
     }
-    /* preserve aspect ratio for both logos */
     .brand-logo.ifc-logo {
       height: 38px;
     }
     .brand-logo.liscae-logo {
-      height: 32px; /* slightly different to balance */
+      height: 32px;
     }
     /* ===== END MODIFIED NAVBAR BRANDING ===== */
 
@@ -311,11 +295,57 @@
     .section-header.center .section-desc { margin: 0 auto; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .about-text p { font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 20px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .stat-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; text-align: center; transition: all var(--transition); }
-    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
-    .stat-value { font-size: 2.5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 8px; font-family: 'Inter', monospace; }
-    .stat-label { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 500; }
+    .logo-placeholder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .logo-placeholder-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      transition: all var(--transition);
+      text-align: center;
+      gap: 16px;
+    }
+    .logo-placeholder-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+    .logo-placeholder-card .logo-icon-big {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      transition: transform var(--transition);
+    }
+    .logo-placeholder-card:hover .logo-icon-big {
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .logo-placeholder-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      margin-top: 8px;
+    }
+    .logo-placeholder-card .logo-sub {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .stats-grid { display: none; } /* remove old stats cards */
     .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .value-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px 32px; transition: all var(--transition); position: relative; overflow: hidden; }
     .value-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); opacity: 0; transition: opacity var(--transition); }
@@ -353,12 +383,42 @@
     .event-meta-item i { width: 16px; color: var(--color-primary); }
     .event-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); font-weight: 600; font-size: 0.9rem; transition: gap var(--transition); }
     .event-btn:hover { gap: 10px; }
-    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 48px; }
-    .impact-item { text-align: center; padding: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); transition: all var(--transition); }
-    .impact-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
-    .impact-value { font-size: 3rem; font-weight: 800; color: var(--color-accent); margin-bottom: 8px; }
-    .impact-label { font-size: 0.95rem; color: #A7B0C0; font-weight: 500; }
-    .impact-cta { text-align: center; }
+    .archive-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .archive-description {
+      font-size: 1.15rem;
+      color: #A7B0C0;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .archive-description strong {
+      color: var(--color-accent);
+    }
+    .archive-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 40px;
+      background: var(--color-accent);
+      color: #0B1020;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(245,197,66,0.3);
+    }
+    .archive-btn:hover {
+      background: #FCD34D;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(245,197,66,0.4);
+    }
+    .archive-icon {
+      width: 28px;
+      height: 28px;
+    }
     .join-content { text-align: center; max-width: 700px; margin: 0 auto; }
     .join-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 20px; color: #F8FAFC; }
     .join-desc { font-size: 1.1rem; color: #A7B0C0; margin-bottom: 40px; line-height: 1.7; }
@@ -415,6 +475,7 @@
       .brand-logo.ifc-logo { height: 34px; }
       .brand-logo.liscae-logo { height: 28px; }
       .brand-link { gap: 10px; }
+      .logo-placeholder-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       .brand-logo.ifc-logo { height: 30px; }
@@ -422,6 +483,10 @@
       .brand-link { gap: 8px; }
       .header-inner { height: 64px; }
       .mobile-nav { top: 64px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .logo-placeholder-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .logo-placeholder-card { min-height: 140px; padding: 24px 16px; }
+      .logo-placeholder-card .logo-icon-big { width: 60px; height: 60px; font-size: 1.5rem; }
     }
     @media (max-width: 480px) {
       .brand-logo.ifc-logo { height: 26px; }
@@ -429,6 +494,7 @@
       .brand-link { gap: 6px; }
       .header-inner { height: 60px; padding: 0 16px; }
       .mobile-nav { top: 60px; }
+      .logo-placeholder-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 360px) {
       .brand-logo.ifc-logo { height: 22px; }
@@ -443,7 +509,6 @@
       .values-grid { grid-template-columns: repeat(2, 1fr); }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
-      .impact-grid { grid-template-columns: repeat(2, 1fr); }
       .partners-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -456,12 +521,9 @@
       .hero-cta { flex-direction: column; width: 100%; }
       .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; justify-content: center; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .values-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr; }
-      .impact-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .impact-value { font-size: 2rem; }
       .partners-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -470,6 +532,8 @@
       .join-cta { flex-direction: column; width: 100%; }
       .join-cta .btn-primary, .join-cta .btn-secondary { width: 100%; justify-content: center; }
       .modal-meta { grid-template-columns: 1fr; }
+      .archive-description { font-size: 1rem; }
+      .archive-btn { padding: 14px 28px; font-size: 1rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -575,7 +639,7 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ===== ABOUT (MODIFIED: removed stats cards, added logo placeholder grid) ===== -->
   <section class="section" id="apropos">
     <div class="container">
       <div class="about-grid">
@@ -584,11 +648,16 @@
           <h2 class="section-title" data-i18n="about_title">Une communauté tournée vers la finance de demain</h2>
           <p data-i18n="about_desc">LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.</p>
         </div>
-        <div class="stats-grid reveal stagger-2">
-          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_members">Membres</div></div>
-          <div class="stat-card"><div class="stat-value">[XXXX]</div><div class="stat-label" data-i18n="stat_year">Année de création</div></div>
-          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_events">Événements</div></div>
-          <div class="stat-card"><div class="stat-value">[XX]</div><div class="stat-label" data-i18n="stat_projects">Projets</div></div>
+        <!-- logo placeholder grid replaces old stats cards -->
+        <div class="logo-placeholder-grid reveal stagger-2">
+          <div class="logo-placeholder-card">
+            <div class="logo-icon-big">IFC</div>
+            <p><span class="logo-sub">LISCAE</span> Fintech Club</p>
+          </div>
+          <div class="logo-placeholder-card">
+            <div class="logo-icon-big">📁</div>
+            <p>Archives &amp; <span class="logo-sub">ressources</span></p>
+          </div>
         </div>
       </div>
     </div>
@@ -706,37 +775,27 @@
     </div>
   </section>
 
-  <!-- ===== IMPACT ===== -->
-  <section class="section section-dark" id="impact">
+  <!-- ===== ARCHIVE SECTION (replaces old impact) ===== -->
+  <section class="section section-dark" id="archive">
     <div class="container">
       <div class="section-header center reveal">
-        <div class="section-label" style="color: var(--color-accent);" data-i18n="impact_label">Notre impact</div>
-        <h2 class="section-title" data-i18n="impact_title">Notre impact</h2>
-        <p class="section-desc" data-i18n="impact_subtitle">Une communauté qui apprend, construit et partage.</p>
+        <div class="section-label" style="color: var(--color-accent);" data-i18n="archive_label">Archives</div>
+        <h2 class="section-title" data-i18n="archive_title">Notre archive</h2>
+        <p class="section-desc" data-i18n="archive_subtitle">Ressources pour les étudiants LISCAE</p>
       </div>
-      <div class="impact-grid">
-        <div class="impact-item reveal stagger-1">
-          <div class="impact-value">[XX]</div>
-          <div class="impact-label" data-i18n="impact_participants">Participants moyens</div>
+      <div class="archive-section reveal stagger-1">
+        <div class="archive-description">
+          <p data-i18n="archive_desc">
+            L'archive IFC est un espace dédié à la mise à disposition de ressources pédagogiques, de documents de cours, et de supports d'étude pour les étudiants de LISCAE. 
+            <strong>Nous rassemblons et organisons des contenus pour faciliter l'apprentissage et la réussite de nos membres.</strong>
+          </p>
         </div>
-        <div class="impact-item reveal stagger-2">
-          <div class="impact-value">[XX]</div>
-          <div class="impact-label" data-i18n="impact_projects">Projets</div>
-        </div>
-        <div class="impact-item reveal stagger-3">
-          <div class="impact-value">[XX]</div>
-          <div class="impact-label" data-i18n="impact_hours">Heures de formation</div>
-        </div>
-        <div class="impact-item reveal stagger-4">
-          <div class="impact-value">[XX]</div>
-          <div class="impact-label" data-i18n="impact_events">Événements</div>
-        </div>
-      </div>
-      <div class="impact-cta reveal">
-        <a href="#evenements" class="hero-link" style="color: var(--color-accent);">
-          <span data-i18n="impact_archive">Voir les archives</span>
-          <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+        <a href="#" class="archive-btn" id="archiveLink" data-i18n="archive_btn">
+          <svg class="archive-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><polyline points="12 11 12 17 16 15"/><line x1="8" y1="15" x2="12" y2="15"/></svg>
+          <span>Accéder au dossier Google Drive</span>
+          <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
         </a>
+        <p style="margin-top:20px; font-size:0.85rem; color: #A7B0C0; opacity:0.7;" data-i18n="archive_placeholder_note">(Lien placeholder — remplacez-le par votre lien Google Drive)</p>
       </div>
     </div>
   </section>
@@ -776,7 +835,7 @@
             <li><a href="#apropos" data-i18n="nav_about">À propos</a></li>
             <li><a href="#valeurs" data-i18n="nav_values">Valeurs</a></li>
             <li><a href="#equipe" data-i18n="nav_team">Équipe</a></li>
-            <li><a href="#evenements" data-i18n="nav_events">Événements</a></li>
+            <li><a href="#archive" data-i18n="nav_archive">Archive</a></li>
             <li><a href="#partenaires" data-i18n="nav_partners">Partenaires</a></li>
           </ul>
         </div>
@@ -785,7 +844,7 @@
           <ul class="footer-links">
             <li><a href="#rejoindre" data-i18n="nav_join">Rejoindre IFC</a></li>
             <li><a href="#evenements" data-i18n="nav_events">Événements</a></li>
-            <li><a href="#" data-i18n="footer_archive">Archives</a></li>
+            <li><a href="#archive" data-i18n="footer_archive">Archives</a></li>
             <li><a href="#" data-i18n="footer_linkedin">LinkedIn</a></li>
             <li><a href="#" data-i18n="footer_instagram">Instagram</a></li>
             <li><a href="#" data-i18n="footer_facebook">Facebook</a></li>
@@ -847,6 +906,7 @@
         nav_events: "Événements",
         nav_partners: "Partenaires",
         nav_join: "Rejoindre l'IFC",
+        nav_archive: "Archive",
         hero_eyebrow: "LISCAE Fintech Club",
         hero_title: "Le <span class='highlight'>Fintech Club</span> de LISCAE",
         hero_subtitle: "Une communauté étudiante au croisement de la finance, de la technologie et de l'innovation. Apprenons, collaborons et construisons les solutions financières de demain.",
@@ -856,10 +916,6 @@
         about_label: "À propos",
         about_title: "Une communauté tournée vers la finance de demain",
         about_desc: "LISCAE Fintech Club est une communauté étudiante dédiée à l'exploration de la rencontre entre finance, technologie et innovation. IFC offre un espace pour apprendre, partager des connaissances, développer des projets et créer des connexions entre étudiants passionnés par les transformations du secteur financier.",
-        stat_members: "Membres",
-        stat_year: "Année de création",
-        stat_events: "Événements",
-        stat_projects: "Projets",
         values_label: "Nos valeurs",
         values_title: "Nos valeurs",
         values_subtitle: "Les principes qui guident notre communauté et notre vision de la fintech.",
@@ -888,14 +944,12 @@
         event_cat_hackathon: "Hackathon",
         event_details: "Voir les détails",
         event_register: "S'inscrire",
-        impact_label: "Notre impact",
-        impact_title: "Notre impact",
-        impact_subtitle: "Une communauté qui apprend, construit et partage.",
-        impact_participants: "Participants moyens",
-        impact_projects: "Projets",
-        impact_hours: "Heures de formation",
-        impact_events: "Événements",
-        impact_archive: "Voir les archives",
+        archive_label: "Archives",
+        archive_title: "Notre archive",
+        archive_subtitle: "Ressources pour les étudiants LISCAE",
+        archive_desc: "L'archive IFC est un espace dédié à la mise à disposition de ressources pédagogiques, de documents de cours, et de supports d'étude pour les étudiants de LISCAE. Nous rassemblons et organisons des contenus pour faciliter l'apprentissage et la réussite de nos membres.",
+        archive_btn: "Accéder au dossier Google Drive",
+        archive_placeholder_note: "(Lien placeholder — remplacez-le par votre lien Google Drive)",
         join_title: "Rejoins l'IFC",
         join_desc: "Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.",
         join_cta_primary: "Rejoindre notre communauté",
@@ -921,6 +975,7 @@
         nav_events: "Events",
         nav_partners: "Partners",
         nav_join: "Join IFC",
+        nav_archive: "Archive",
         hero_eyebrow: "LISCAE Fintech Club",
         hero_title: "The <span class='highlight'>Fintech Club</span> of LISCAE",
         hero_subtitle: "A student community at the intersection of finance, technology and innovation. Let's learn, collaborate and build the financial solutions of tomorrow.",
@@ -930,10 +985,6 @@
         about_label: "About",
         about_title: "A community focused on the finance of tomorrow",
         about_desc: "LISCAE Fintech Club is a student community dedicated to exploring the intersection of finance, technology and innovation. IFC provides a space to learn, share knowledge, develop projects and create connections between students passionate about the transformations in the financial sector.",
-        stat_members: "Members",
-        stat_year: "Year founded",
-        stat_events: "Events",
-        stat_projects: "Projects",
         values_label: "Our values",
         values_title: "Our values",
         values_subtitle: "The principles that guide our community and our vision of fintech.",
@@ -962,14 +1013,12 @@
         event_cat_hackathon: "Hackathon",
         event_details: "View details",
         event_register: "Register",
-        impact_label: "Our impact",
-        impact_title: "Our impact",
-        impact_subtitle: "A community that learns, builds and shares.",
-        impact_participants: "Average participants",
-        impact_projects: "Projects",
-        impact_hours: "Training hours",
-        impact_events: "Events",
-        impact_archive: "View archives",
+        archive_label: "Archives",
+        archive_title: "Our archive",
+        archive_subtitle: "Resources for LISCAE students",
+        archive_desc: "The IFC archive is a space dedicated to providing educational resources, course materials, and study support for LISCAE students. We gather and organize content to facilitate learning and success for our members.",
+        archive_btn: "Access Google Drive folder",
+        archive_placeholder_note: "(Placeholder link — replace with your Google Drive link)",
         join_title: "Join IFC",
         join_desc: "Whether you are passionate about finance, technology, innovation or simply curious to explore fintech, IFC is a space to learn, meet, collaborate and build.",
         join_cta_primary: "Join our community",
@@ -995,6 +1044,7 @@
         nav_events: "الفعاليات",
         nav_partners: "الشركاء",
         nav_join: "انضم إلى IFC",
+        nav_archive: "الأرشيف",
         hero_eyebrow: "نادي ليسكاي للتكنولوجيا المالية",
         hero_title: "<span class='highlight'>نادي التكنولوجيا المالية</span> في ليسكاي",
         hero_subtitle: "مجتمع طلابي عند تقاطع المال والتكنولوجيا والابتكار. لنتعلم ونتعاون ونبني حلول المال الغد.",
@@ -1004,10 +1054,6 @@
         about_label: "من نحن",
         about_title: "مجتمع متطلع إلى مستقبل المال",
         about_desc: "نادي ليسكاي للتكنولوجيا المالية هو مجتمع طلابي مكرس لاستكشاف تقاطع المال والتكنولوجيا والابتكار. يوفر IFC مساحة للتعلم ومشاركة المعرفة وتطوير المشاريع وإنشاء روابط بين الطلاب المتحمسين لتحولات القطاع المالي.",
-        stat_members: "الأعضاء",
-        stat_year: "سنة التأسيس",
-        stat_events: "الفعاليات",
-        stat_projects: "المشاريع",
         values_label: "قيمنا",
         values_title: "قيمنا",
         values_subtitle: "المبادئ التي توجه مجتمعنا ورؤيتنا للتكنولوجيا المالية.",
@@ -1036,14 +1082,12 @@
         event_cat_hackathon: "هاكاثون",
         event_details: "عرض التفاصيل",
         event_register: "التسجيل",
-        impact_label: "تأثيرنا",
-        impact_title: "تأثيرنا",
-        impact_subtitle: "مجتمع يتعلم ويبني ويشارك.",
-        impact_participants: "المشاركون",
-        impact_projects: "المشاريع",
-        impact_hours: "ساعات التدريب",
-        impact_events: "الفعاليات",
-        impact_archive: "عرض الأرشيف",
+        archive_label: "الأرشيف",
+        archive_title: "أرشيفنا",
+        archive_subtitle: "موارد لطلاب ليسكاي",
+        archive_desc: "أرشيف IFC هو مساحة مخصصة لتوفير الموارد التعليمية ومواد الدروس والدعم الدراسي لطلاب ليسكاي. نقوم بجمع وتنظيم المحتوى لتسهيل التعلم والنجاح لأعضائنا.",
+        archive_btn: "الوصول إلى مجلد Google Drive",
+        archive_placeholder_note: "(رابط مؤقت — استبدله برابط Google Drive الخاص بك)",
         join_title: "انضم إلى IFC",
         join_desc: "سواء كنت متحمسًا للمال أو التكنولوجيا أو الابتكار أو مجرد فضولي لاستكشاف التكنولوجيا المالية، فإن IFC هو مساحة للتعلم واللقاء والتعاون والبناء.",
         join_cta_primary: "انضم إلى مجتمعنا",
@@ -1231,6 +1275,13 @@
     // ===== INIT =====
     setLanguage(currentLang);
     lucide.createIcons();
+
+    // Archive link placeholder - replace with actual Google Drive URL
+    document.getElementById('archiveLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      // Replace this URL with your actual Google Drive folder link
+      window.open('https://drive.google.com/drive/folders/your-folder-id-here', '_blank');
+    });
   </script>
 </body>
 </html>
