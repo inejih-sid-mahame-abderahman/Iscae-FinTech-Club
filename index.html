@@ -163,7 +163,7 @@
     [data-theme="dark"] .header { background: rgba(7, 11, 20, 0.85); }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     
-    /* ===== MODIFIED NAVBAR BRANDING ===== */
+    /* ===== NAVBAR BRANDING ===== */
     .brand-link {
       display: flex;
       align-items: center;
@@ -187,7 +187,7 @@
     .brand-logo.liscae-logo {
       height: 32px;
     }
-    /* ===== END MODIFIED NAVBAR BRANDING ===== */
+    /* ===== END NAVBAR BRANDING ===== */
 
     .nav-desktop { display: flex; align-items: center; gap: 32px; }
     .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--color-text-secondary); transition: color var(--transition); position: relative; }
@@ -345,7 +345,7 @@
       font-weight: 600;
       color: var(--color-primary);
     }
-    .stats-grid { display: none; } /* remove old stats cards */
+    .stats-grid { display: none; }
     .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .value-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px 32px; transition: all var(--transition); position: relative; overflow: hidden; }
     .value-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); opacity: 0; transition: opacity var(--transition); }
@@ -433,8 +433,8 @@
     .partner-placeholder { font-size: 0.85rem; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
     .footer { background: var(--color-footer); color: #A7B0C0; padding: 80px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
-    .footer-brand .logo { color: #F8FAFC; margin-bottom: 16px; }
-    .footer-brand .logo-icon { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); }
+    .footer-brand .logo { color: #F8FAFC; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .footer-brand .logo-icon-img { height: 40px; width: auto; }
     .footer-desc { font-size: 0.95rem; line-height: 1.7; max-width: 300px; }
     .footer-title { font-size: 0.85rem; font-weight: 700; color: #F8FAFC; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 24px; }
     .footer-links { list-style: none; }
@@ -546,7 +546,7 @@
 </head>
 <body>
 
-  <!-- ===== HEADER (MODIFIED NAVBAR) ===== -->
+  <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <div class="container header-inner">
       <!-- logo lockup: IFC + LISCAE -->
@@ -639,7 +639,7 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT (MODIFIED: removed stats cards, added logo placeholder grid) ===== -->
+  <!-- ===== ABOUT ===== -->
   <section class="section" id="apropos">
     <div class="container">
       <div class="about-grid">
@@ -722,7 +722,7 @@
             <div class="team-photo-placeholder" style="display:none;">IF</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">[Nom du membre]</h3>
+            <h3 class="team-name">Membre Mouritnes</h3>
             <p class="team-role" data-i18n="role_vp">Vice-président(e)</p>
             <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
           </div>
@@ -733,7 +733,7 @@
             <div class="team-photo-placeholder" style="display:none;">IF</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">[Nom du membre]</h3>
+            <h3 class="team-name">Membre Mouritnes</h3>
             <p class="team-role" data-i18n="role_finance">Responsable Finance</p>
             <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
           </div>
@@ -744,7 +744,7 @@
             <div class="team-photo-placeholder" style="display:none;">IF</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">[Nom du membre]</h3>
+            <h3 class="team-name">Membre Mouritnes</h3>
             <p class="team-role" data-i18n="role_comm">Responsable Communication</p>
             <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
           </div>
@@ -755,7 +755,7 @@
             <div class="team-photo-placeholder" style="display:none;">IF</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">[Nom du membre]</h3>
+            <h3 class="team-name">Membre Mouritnes</h3>
             <p class="team-role" data-i18n="role_events">Responsable Événements</p>
             <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
           </div>
@@ -766,7 +766,7 @@
             <div class="team-photo-placeholder" style="display:none;">IF</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">[Nom du membre]</h3>
+            <h3 class="team-name">Membre Mouritnes</h3>
             <p class="team-role" data-i18n="role_programs">Responsable Programmes</p>
             <div class="team-social"><a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px;"></i></a></div>
           </div>
@@ -775,7 +775,7 @@
     </div>
   </section>
 
-  <!-- ===== ARCHIVE SECTION (replaces old impact) ===== -->
+  <!-- ===== ARCHIVE SECTION ===== -->
   <section class="section section-dark" id="archive">
     <div class="container">
       <div class="section-header center reveal">
@@ -790,12 +790,12 @@
             <strong>Nous rassemblons et organisons des contenus pour faciliter l'apprentissage et la réussite de nos membres.</strong>
           </p>
         </div>
-        <a href="#" class="archive-btn" id="archiveLink" data-i18n="archive_btn">
+        <!-- REAL LINK UPDATED HERE -->
+        <a href="https://drive.google.com/drive/folders/1d2iS6aF3QpaN0c-n2MULvrLB6dyKzmPP?usp=drive_link" target="_blank" class="archive-btn" id="archiveLink" data-i18n="archive_btn">
           <svg class="archive-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><polyline points="12 11 12 17 16 15"/><line x1="8" y1="15" x2="12" y2="15"/></svg>
           <span>Accéder au dossier Google Drive</span>
           <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
         </a>
-        <p style="margin-top:20px; font-size:0.85rem; color: #A7B0C0; opacity:0.7;" data-i18n="archive_placeholder_note">(Lien placeholder — remplacez-le par votre lien Google Drive)</p>
       </div>
     </div>
   </section>
@@ -807,7 +807,8 @@
         <h2 class="join-title" data-i18n="join_title">Rejoins l'IFC</h2>
         <p class="join-desc" data-i18n="join_desc">Que tu sois passionné par la finance, la technologie, l'innovation ou simplement curieux d'explorer la fintech, IFC est un espace pour apprendre, rencontrer, collaborer et construire.</p>
         <div class="join-cta">
-          <a href="#join" class="btn-primary" data-i18n="join_cta_primary">Rejoindre notre communauté</a>
+          <!-- WHATSAPP COMMUNITY LINK UPDATED HERE -->
+          <a href="https://chat.whatsapp.com/JV5Qjb3J7Lg0eCeKvOuSoa?mode=gi_t" target="_blank" class="btn-primary" data-i18n="join_cta_primary">Rejoindre notre communauté</a>
           <a href="#evenements" class="btn-secondary" data-i18n="join_cta_secondary">Découvrir nos événements</a>
         </div>
       </div>
@@ -820,7 +821,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
-            <div class="logo-icon">IFC</div>
+            <!-- FIXED FOOTER LOGO: Replaced text IFC with the actual image -->
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1787229367/hv5anjmf6rsb9mvui1sd.png" alt="IFC Logo" class="logo-icon-img">
             <div class="logo-text">
               <span style="color: #A7B0C0;">LISCAE Fintech Club</span>
               <span style="color: #F8FAFC;">IFC</span>
@@ -853,9 +855,10 @@
         <div>
           <h4 class="footer-title" data-i18n="footer_contact_title">Contact</h4>
           <ul class="footer-links">
-            <li><a href="#">[Email IFC]</a></li>
-            <li><a href="#">[Téléphone IFC]</a></li>
-            <li><a href="#">[Adresse / LISCAE]</a></li>
+            <!-- REAL CONTACT DETAILS UPDATED HERE -->
+            <li><a href="mailto:ifc2026@gmail.com">ifc2026@gmail.com</a></li>
+            <li><a href="tel:+22200000000">[Téléphone IFC]</a></li>
+            <li><a href="#">LISCAE Nouakchott, Mauritanie</a></li>
           </ul>
         </div>
       </div>
@@ -1276,12 +1279,7 @@
     setLanguage(currentLang);
     lucide.createIcons();
 
-    // Archive link placeholder - replace with actual Google Drive URL
-    document.getElementById('archiveLink').addEventListener('click', function(e) {
-      e.preventDefault();
-      // Replace this URL with your actual Google Drive folder link
-      window.open('https://drive.google.com/drive/folders/your-folder-id-here', '_blank');
-    });
+    // Archive link is now handled by the direct HTML href, no JS needed
   </script>
 </body>
 </html>
