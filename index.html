@@ -331,7 +331,7 @@
     .team-photo-placeholder { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; }
     .team-info { padding: 24px; }
     .team-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: var(--color-text); }
-    .team-role { font-size: 0.9rem; color: var(--color-primary); font-weight: 600; margin-bottom: 16px; }
+    .team-role { font-size: 0.9rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0; }
     .team-social { display: flex; gap: 8px; }
     .team-social a { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--color-bg); color: var(--color-text-secondary); transition: all var(--transition); border: 1px solid var(--color-border); }
     .team-social a:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
@@ -435,8 +435,10 @@
     .modal-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
     .modal-meta-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--color-text-secondary); }
     .modal-meta-item i { color: var(--color-primary); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    /* FIXED: Removed the opacity 0 that was hiding the text */
+    .reveal { transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+    
     .stagger-1 { transition-delay: 0.1s; }
     .stagger-2 { transition-delay: 0.2s; }
     .stagger-3 { transition-delay: 0.3s; }
@@ -537,14 +539,13 @@
       <div class="header-actions">
         <div class="lang-selector">
           <button class="lang-toggle" id="langToggle" aria-label="Changer de langue">
-            <span id="currentLangFlag">🇫🇷</span>
             <span id="currentLangLabel">Français</span>
             <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
           </button>
           <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-option active" data-lang="fr"><span>🇫🇷</span><span>Français</span></div>
-            <div class="lang-option" data-lang="en"><span>🇬🇧</span><span>English</span></div>
-            <div class="lang-option" data-lang="ar"><span>🇸🇦</span><span>العربية</span></div>
+            <div class="lang-option active" data-lang="fr"><span>Français</span></div>
+            <div class="lang-option" data-lang="en"><span>English</span></div>
+            <div class="lang-option" data-lang="ar"><span>العربية</span></div>
           </div>
         </div>
         <a href="#rejoindre" class="btn-primary" data-i18n="nav_join">Rejoindre l'IFC</a>
@@ -674,89 +675,125 @@
         <p class="section-desc" data-i18n="team_subtitle">Les étudiants qui contribuent à faire grandir la communauté IFC.</p>
       </div>
       <div class="team-grid">
+        <!-- 1. Abderahman Afane - Président -->
         <div class="team-card reveal stagger-1">
           <div class="team-photo">
-            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1794843361/esiqzf8ih24mj1w6bxgb.jpg" alt="Abderahman afane" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1791474457/eodanhtwws9h5ryee3xn.jpg" alt="Abderahman Afane" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">AA</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">Abderahman afane</h3>
+            <h3 class="team-name">Abderahman Afane</h3>
             <p class="team-role" data-i18n="role_president">Président(e)</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
           </div>
         </div>
+        <!-- 2. Hasni Sidi - Vice-président -->
         <div class="team-card reveal stagger-2">
           <div class="team-photo">
-            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Ahmedou Sidi Mohamed" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Hasni Sidi" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">HS</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">Ahmedou Sidi Mohamed</h3>
+            <h3 class="team-name">Hasni Sidi</h3>
             <p class="team-role" data-i18n="role_vp">Vice-président(e)</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
           </div>
         </div>
+        <!-- 3. Inejih Sid Mhamed Abderahman - Secrétaire Général -->
         <div class="team-card reveal stagger-3">
           <div class="team-photo">
-            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1791474457/eodanhtwws9h5ryee3xn.jpg" alt="inejih sid mhamed Abderahman" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1791474457/eodanhtwws9h5ryee3xn.jpg" alt="Inejih Sid Mhamed Abderahman" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">IS</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">inejih sid mhamed Abderahman</h3>
-            <p class="team-role" data-i18n="role_secretary">Secrétaire</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
+            <h3 class="team-name">Inejih Sid Mhamed Abderahman</h3>
+            <p class="team-role" data-i18n="role_secretary">Secrétaire Général(e)</p>
           </div>
         </div>
-        
+        <!-- 4. Elybou - Trésorier -->
+        <div class="team-card reveal stagger-4">
+          <div class="team-photo">
+            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Elybou" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">EL</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Elybou</h3>
+            <p class="team-role" data-i18n="role_treasurer">Trésorier(ère)</p>
+          </div>
+        </div>
+        <!-- 5. Sidina Mohamed Lemin - Responsable des Affaires Étudiantes -->
         <div class="team-card reveal stagger-5">
           <div class="team-photo">
-            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Med Salem Med Mahmoudt" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1795474338/v7hihxrissq2gbv9xkdf.jpg" alt="Sidina Mohamed Lemin" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">SM</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">Med Salem Med Mahmoudt</h3>
-            <p class="team-role" data-i18n="role_comm">Responsable Communication</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
+            <h3 class="team-name">Sidina Mohamed Lemin</h3>
+            <p class="team-role" data-i18n="role_student_affairs">Responsable des Affaires Étudiantes</p>
           </div>
         </div>
+        <!-- 6. Sidi Ahmed Berraye - Responsable des Relations Extérieures -->
         <div class="team-card reveal stagger-6">
           <div class="team-photo">
-            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Cheikh Ledhem Sabar" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1795473764/f9besan3ucxmmue1mq9w.jpg" alt="Sidi Ahmed Berraye" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">SA</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">Cheikh Ledhem Sabar</h3>
-            <p class="team-role" data-i18n="role_events">Responsable Événements</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
+            <h3 class="team-name">Sidi Ahmed Berraye</h3>
+            <p class="team-role" data-i18n="role_external_relations">Responsable des Relations Extérieures</p>
           </div>
         </div>
+        <!-- 7. Nejate Cheikh - Responsable de l'Organisation -->
         <div class="team-card reveal stagger-1">
           <div class="team-photo">
-            <img src="https://png.pngtree.com/recommend-works/png-clipart/20240716/ourmid/pngtree-hijab-woman-avatar-cartoon-png-image_13079536.png" alt="Nejjat Cheick Mouhameden" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
-            <div class="team-photo-placeholder" style="display:none;">IF</div>
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1795473748/y2jlhy1nsezhqspnkxzy.jpg" alt="Nejate Cheikh" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">NC</div>
           </div>
           <div class="team-info">
-            <h3 class="team-name">Nejjat Cheick Mouhameden</h3>
-            <p class="team-role" data-i18n="role_programs">Responsable Programmes</p>
-            <div class="team-social">
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
-            </div>
+            <h3 class="team-name">Nejate Cheikh</h3>
+            <p class="team-role" data-i18n="role_organization">Responsable de l'Organisation</p>
+          </div>
+        </div>
+        <!-- 8. Cheikh Sabar - Responsable des Projets et Programmes -->
+        <div class="team-card reveal stagger-2">
+          <div class="team-photo">
+            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Cheikh Sabar" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">CS</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Cheikh Sabar</h3>
+            <p class="team-role" data-i18n="role_programs">Responsable des Projets et Programmes</p>
+          </div>
+        </div>
+        <!-- 9. Ahmedou Sidi Mouhamed - Responsable Technique -->
+        <div class="team-card reveal stagger-3">
+          <div class="team-photo">
+            <img src="https://static.vecteezy.com/system/resources/previews/063/477/592/large_2x/minimalist-avatar-illustration-of-a-person-with-a-stylish-asymmetric-haircut-in-grayscale-tones-the-anonymous-figure-features-a-modern-look-and-clean-lines-perfect-for-social-media-profiles-vector.jpg" alt="Ahmedou Sidi Mouhamed" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">AM</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Ahmedou Sidi Mouhamed</h3>
+            <p class="team-role" data-i18n="role_technical">Responsable Technique</p>
+          </div>
+        </div>
+        <!-- 10. Aminata Abdoulaye Diop - Responsable de la Documentation et des Archives -->
+        <div class="team-card reveal stagger-4">
+          <div class="team-photo">
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1795473774/nbewzwiegjggpgy3o82f.jpg" alt="Aminata Abdoulaye Diop" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">AD</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Aminata Abdoulaye Diop</h3>
+            <p class="team-role" data-i18n="role_documentation">Responsable de la Documentation et des Archives</p>
+          </div>
+        </div>
+        <!-- 11. Medina Mohamed Selly Sow - Responsable de la Documentation Visuelle -->
+        <div class="team-card reveal stagger-5">
+          <div class="team-photo">
+            <img src="https://res.cloudinary.com/dobbzalqp/image/upload/v1795473756/zslveecgyre0lbhmxrtb.jpg" alt="Medina Mohamed Selly Sow" onerror="this.style.display='none'; this.parentElement.querySelector('.team-photo-placeholder').style.display='flex';">
+            <div class="team-photo-placeholder" style="display:none;">MS</div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Medina Mohamed Selly Sow</h3>
+            <p class="team-role" data-i18n="role_visual_documentation">Responsable de la Documentation Visuelle</p>
           </div>
         </div>
       </div>
@@ -916,13 +953,19 @@ const translations = {
     team_subtitle: "Derrière le LISCAE Fintech Club, il y a une équipe engagée, bien plus qu'une simple liste de responsables. Nous sommes un groupe d'étudiants déterminés à faire vivre le club, à accompagner les autres étudiants et à créer des occasions d'apprendre, de collaborer et de progresser ensemble.",
     role_president: "Président(e)",
     role_vp: "Vice-président(e)",
-    role_secretary: "Secrétaire",
+    role_secretary: "Secrétaire Général(e)",
     role_treasurer: "Trésorier(ère)",
     role_finance: "Trésorier(ère)",
-    role_programs: "Responsable Programmes",
+    role_programs: "Responsable des Projets et Programmes",
     role_comm: "Responsable Communication",
     role_events: "Responsable Événements",
     role_projects: "Responsable projets et technologie",
+    role_student_affairs: "Responsable des Affaires Étudiantes",
+    role_external_relations: "Responsable des Relations Extérieures",
+    role_organization: "Responsable de l'Organisation",
+    role_technical: "Responsable Technique",
+    role_documentation: "Responsable de la Documentation et des Archives",
+    role_visual_documentation: "Responsable de la Documentation Visuelle",
     events_label: "La vie du club",
     events_title: "Apprendre en faisant",
     events_subtitle: "Des ateliers pour découvrir, des rencontres pour échanger, des projets pour expérimenter et des défis pour repousser nos limites. Chaque activité est une occasion d'apprendre ensemble et de transformer les idées en expériences concrètes.",
@@ -984,13 +1027,19 @@ const translations = {
     team_subtitle: "LISCAE Fintech Club is powered by a committed team, not just a list of officeholders. We are students who care about building an active club, helping fellow students discover new opportunities and creating more ways for people to learn, collaborate and grow together.",
     role_president: "President",
     role_vp: "Vice President",
-    role_secretary: "Secretary",
+    role_secretary: "Secretary General",
     role_treasurer: "Treasurer",
     role_finance: "Treasurer",
-    role_programs: "Programs Lead",
+    role_programs: "Projects & Programs Lead",
     role_comm: "Communications Lead",
     role_events: "Events Lead",
     role_projects: "Projects & Technology Lead",
+    role_student_affairs: "Student Affairs Lead",
+    role_external_relations: "External Relations Lead",
+    role_organization: "Organization Lead",
+    role_technical: "Technical Lead",
+    role_documentation: "Documentation & Archives Lead",
+    role_visual_documentation: "Visual Documentation Lead",
     events_label: "Life at the Club",
     events_title: "Learning by Doing",
     events_subtitle: "Workshops to explore new topics, meetups to exchange ideas, projects to gain experience and challenges that push us to think differently. Every activity is an opportunity to learn together and put ideas into practice.",
@@ -1052,13 +1101,19 @@ const translations = {
     team_subtitle: "يقف وراء نادي التكنولوجيا المالية فريق ملتزم، وليس مجرد قائمة من المسؤولين. نحن طلاب نعمل بروح الفريق من أجل تطوير النادي، ومساعدة زملائنا على اكتشاف فرص جديدة، وخلق مساحة تتيح للجميع التعلم والتعاون وتطوير مهاراتهم معا.",
     role_president: "رئيس النادي",
     role_vp: "نائب الرئيس",
-    role_secretary: "أمين السر",
+    role_secretary: "أمين السر العام",
     role_treasurer: "أمين المال",
     role_finance: "أمين المال",
-    role_programs: "مسؤول البرامج",
+    role_programs: "مسؤول المشاريع والبرامج",
     role_comm: "مسؤول التواصل",
     role_events: "مسؤول الفعاليات",
     role_projects: "مسؤول المشاريع والتكنولوجيا",
+    role_student_affairs: "مسؤول الشؤون الطلابية",
+    role_external_relations: "مسؤول العلاقات الخارجية",
+    role_organization: "مسؤول التنظيم",
+    role_technical: "المسؤول التقني",
+    role_documentation: "مسؤول التوثيق والأرشيف",
+    role_visual_documentation: "مسؤولة التوثيق البصري",
     events_label: "حياة النادي",
     events_title: "نتعلم بالتجربة والعمل",
     events_subtitle: "ورشات لاكتشاف مجالات جديدة، ولقاءات لتبادل الأفكار، ومشاريع لاكتساب الخبرة، وتحديات تدفعنا إلى التفكير بطرق مختلفة. كل نشاط هو فرصة للتعلم معا وتحويل الأفكار إلى تجارب عملية.",
@@ -1113,7 +1168,6 @@ function setLanguage(lang) {
     }
   });
 
-  document.getElementById('currentLangFlag').textContent = lang === 'fr' ? '🇫🇷' : lang === 'en' ? '🇬🇧' : '🇸🇦';
   document.getElementById('currentLangLabel').textContent = lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'العربية';
 
   document.querySelectorAll('.lang-option').forEach(opt => {
@@ -1192,6 +1246,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
+// The reveal animation is disabled from hiding elements, but we keep the observer for any future opacity transitions
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
